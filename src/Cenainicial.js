@@ -1,4 +1,4 @@
-// comentario do rafa versao 3.0
+// ./src/Cenainicial.js
 
 class Cenainicial extends Phaser.Scene {
   constructor() {
@@ -44,13 +44,18 @@ class Cenainicial extends Phaser.Scene {
 
     this.cameras.main.setZoom(1.5);
 
-    const background = this.add.image(0, 0, "Cena1").setOrigin(0, 0).setDisplaySize(
+    const background = this.add
+      .image(0, 0, "Cena1")
+      .setOrigin(0, 0)
+      .setDisplaySize(
         this.cameras.main.width * 1.5,
         this.cameras.main.height * 1.5
       );
 
-    this.player = this.add.sprite(centerX, centerY, "menina1").setOrigin(0.5).setScale(1.7);
-
+    this.player = this.add
+      .sprite(centerX, centerY, "menina1")
+      .setOrigin(0.5)
+      .setScale(1.7);
 
     // Adiciona um quadrado vermelho no centro do mapa
     this.cube = this.add.rectangle(550, 450, 30, 30, 0xff0000);
@@ -85,13 +90,19 @@ class Cenainicial extends Phaser.Scene {
 
     this.anims.create({
       key: "left",
-      frames: this.anims.generateFrameNumbers("menina1", { start: 14, end: 20 }),
+      frames: this.anims.generateFrameNumbers("menina1", {
+        start: 14,
+        end: 20,
+      }),
       frameRate: 10,
       repeat: -1,
     });
     this.anims.create({
       key: "right",
-      frames: this.anims.generateFrameNumbers("menina1", { start: 14, end: 20 }),
+      frames: this.anims.generateFrameNumbers("menina1", {
+        start: 14,
+        end: 20,
+      }),
       frameRate: 10,
       repeat: -1,
     });

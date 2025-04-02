@@ -1,3 +1,5 @@
+// ./src/Minigamedois.js
+
 class Minigamedois extends Phaser.Scene {
     constructor() {
         super({ key: "Minigamedois" });

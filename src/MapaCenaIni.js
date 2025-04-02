@@ -1,3 +1,5 @@
+// ./src/MapaCenaIni.js
+
 class MapaCenaIni extends Phaser.Scene {
     constructor() {
         super({ key: "MapaCenaIni" });

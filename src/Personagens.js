@@ -1,3 +1,5 @@
+// ./src/Personagens.js
+
 class Personagens extends Phaser.Scene {
     constructor() {
         super({ key: "Personagens" });

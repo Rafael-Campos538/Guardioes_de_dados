@@ -1,3 +1,5 @@
+// ./src/MainMenu.js
+
 class MainMenu extends Phaser.Scene {
     constructor() {
         super({ key: "MainMenu" });
