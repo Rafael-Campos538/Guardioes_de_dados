@@ -1,4 +1,4 @@
-// comentario do rafa
+// comentario do rafa versao 2.0
 
 class Cenainicial extends Phaser.Scene {
   constructor() {
