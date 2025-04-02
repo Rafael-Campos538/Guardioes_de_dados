@@ -44,18 +44,13 @@ class Cenainicial extends Phaser.Scene {
 
     this.cameras.main.setZoom(1.5);
 
-    const background = this.add
-      .image(0, 0, "Cena1")
-      .setOrigin(0, 0)
-      .setDisplaySize(
+    const background = this.add.image(0, 0, "Cena1").setOrigin(0, 0).setDisplaySize(
         this.cameras.main.width * 1.5,
         this.cameras.main.height * 1.5
       );
 
-    this.player = this.add
-      .sprite(centerX, centerY, "menina1")
-      .setOrigin(0.5)
-      .setScale(1.7);
+    this.player = this.add.sprite(centerX, centerY, "menina1").setOrigin(0.5).setScale(1.7);
+
 
     // Adiciona um quadrado vermelho no centro do mapa
     this.cube = this.add.rectangle(550, 450, 30, 30, 0xff0000);
@@ -72,31 +67,31 @@ class Cenainicial extends Phaser.Scene {
     //animacao player
     this.anims.create({
       key: "turn",
-      frames: [{ key: "player", frame: 1 }],
+      frames: [{ key: "menina1", frame: 1 }],
       frameRate: 20,
     });
     this.anims.create({
       key: "up",
-      frames: this.anims.generateFrameNumbers("player", { start: 7, end: 13 }),
+      frames: this.anims.generateFrameNumbers("menina1", { start: 7, end: 13 }),
       frameRate: 10,
       repeat: -1,
     });
     this.anims.create({
       key: "down",
-      frames: this.anims.generateFrameNumbers("player", { start: 0, end: 6 }),
+      frames: this.anims.generateFrameNumbers("menina1", { start: 0, end: 6 }),
       frameRate: 10,
       repeat: -1,
     });
 
     this.anims.create({
       key: "left",
-      frames: this.anims.generateFrameNumbers("player", { start: 14, end: 20 }),
+      frames: this.anims.generateFrameNumbers("menina1", { start: 14, end: 20 }),
       frameRate: 10,
       repeat: -1,
     });
     this.anims.create({
       key: "right",
-      frames: this.anims.generateFrameNumbers("player", { start: 14, end: 20 }),
+      frames: this.anims.generateFrameNumbers("menina1", { start: 14, end: 20 }),
       frameRate: 10,
       repeat: -1,
     });
@@ -122,23 +117,23 @@ class Cenainicial extends Phaser.Scene {
 
   update(delta) {
     //movimentação do jogador
+    const speed = 3; // Velocidade do player
+
     if (this.cursors.left.isDown) {
-      this.player.setVelocityX(-160);
+      this.player.x -= speed;
       this.player.anims.play("left", true);
       this.player.setFlipX(true); // Inverte a imagem do jogador
     } else if (this.cursors.right.isDown) {
-      this.player.setVelocityX(160);
+      this.player.x += speed;
       this.player.anims.play("right", true);
       this.player.setFlipX(false);
     } else if (this.cursors.up.isDown) {
-      this.player.setVelocityY(-160);
+      this.player.y -= speed;
       this.player.anims.play("up", true);
     } else if (this.cursors.down.isDown) {
-      this.player.setVelocityY(160);
+      this.player.y += speed;
       this.player.anims.play("down", true);
     } else {
-      this.player.setVelocityX(0);
-      this.player.setVelocityY(0);
       this.player.anims.play("turn");
     }
 
