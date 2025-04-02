@@ -1,19 +1,20 @@
-# 🔄 Explicação do Git Workflow (GitFlow)
+# 🔄 Git Workflow em Equipe – Guia Didático
 
 ## ⏱️ Resumo: O Básico do Git no Dia a Dia
 
-| Quando                 | O que fazer                                                                  | Comando                                                                           |
-| ---------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| **📌 ANTES DE CODAR**  | Pegar código atualizado                                                      | `git pull origin main`                                                            |
-| **📌 DURANTE O DEV**   | Ver o que mudou<br>Selecionar arquivos<br>Salvar mudanças                    | `git status`<br>`git add .`<br>`git commit -m "o que fiz"`                        |
-| **📌 ANTES DE ENVIAR** | Atualizar novamente<br>Resolver problemas (se tiver)<br>Enviar para o GitHub | `git pull origin main`<br>Editar arquivos com conflitos<br>`git push origin main` |
+| Quando                 | O que fazer                                               | Comando                                                                       |
+| ---------------------- | --------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| **📌 ANTES DE CODAR**  | Pegar código atualizado                                   | `git pull origin main`                                                        |
+| **📌 DURANTE O DEV**   | Ver o que mudou<br>Selecionar arquivos<br>Salvar mudanças | `git status`<br>`git add .`<br>`git commit -m "o que fiz"`                    |
+| **📌 ANTES DE ENVIAR** | Atualizar novamente                                       | `git pull origin main`                                                        |
+| **📌 COMO ENVIAR**     | Enviar seu código para o GitHub                           | `git add .`<br>`git commit -m "descreva o que fez"`<br>`git push origin main` |
 
 > **Regra de ouro:** Sempre faça `git pull` antes de começar a programar e antes de fazer `push`!
 
 ## 🎯 Para que serve este guia?
 
 - Criar um passo a passo claro para todo mundo do time
-- Evitar conflitos e problemas quando juntamos o kcódigo
+- Evitar conflitos e problemas quando juntamos o código
 - Garantir que todos estejam com o código atualizado
 - Facilitar o trabalho em equipe
 
@@ -25,15 +26,16 @@
 > - O repositório é a pasta onde guardamos todas as fotos
 > - Pull = baixar as fotos que outros tiraram
 > - Push = enviar suas fotos para os outros
->   | Palavra | O que significa na prática |
->   |-------|------------|
->   | **Repositório** | A pasta com todo o histórico do projeto |
->   | **Commit** | Salvar suas mudanças com uma descrição |
->   | **Branch** | Versão paralela do código (usamos principalmente a `main`) |
->   | **Pull** | Baixar as atualizações do GitHub para seu PC |
->   | **Push** | Enviar suas mudanças do PC para o GitHub |
->   | **Merge** | Juntar código de diferentes pessoas |
->   | **Conflito** | Quando você e outro dev mudaram o mesmo trecho e o Git não sabe qual manter |
+
+| Palavra         | O que significa na prática                                                  |
+| --------------- | --------------------------------------------------------------------------- |
+| **Repositório** | A pasta com todo o histórico do projeto                                     |
+| **Commit**      | Salvar suas mudanças com uma descrição                                      |
+| **Branch**      | Versão paralela do código (usamos principalmente a `main`)                  |
+| **Pull**        | Baixar as atualizações do GitHub para seu PC                                |
+| **Push**        | Enviar suas mudanças do PC para o GitHub                                    |
+| **Merge**       | Juntar código de diferentes pessoas                                         |
+| **Conflito**    | Quando você e outro dev mudaram o mesmo trecho e o Git não sabe qual manter |
 
 ---
 
@@ -58,7 +60,7 @@
 
    > 💡 **O que isso faz**: Baixa todas as mudanças que outros devs enviaram para o GitHub. Se pular esta etapa, terá problemas depois!
 
-   > 🔍 **Exemplo visual**:
+   > 🔍 **Exemplo do que aparece**:
    >
    > ```
    > $ git pull origin main
@@ -69,6 +71,43 @@
    >  arquivo.js | 25 +++++++++++++------------
    >  1 file changed, 13 insertions(+), 12 deletions(-)
    > ```
+
+### 📋 **Como ver o que outros devs fizeram antes de começar?**
+
+> 💡 **Dica valiosa**: Sempre bom saber o que mudou antes de começar a codar!
+
+1. **Ver os commits recentes** (quem fez o quê):
+
+   ```bash
+   git pull origin main         # Primeiro atualize
+   git log --oneline -10        # Mostra os últimos 10 commits
+   ```
+
+   Exemplo do que aparece:
+
+   ```
+   e7f8g92 Adiciona validação no formulário de cadastro
+   a2b5d63 Corrige bug na página de pagamento
+   8h3d9f1 Atualiza bibliotecas do projeto
+   ```
+
+2. **Ver exatamente o que mudou em um commit específico**:
+
+   ```bash
+   git show e7f8g92             # Use o código do commit que quer ver
+   ```
+
+3. **Ver o que mudou desde ontem**:
+
+   ```bash
+   git pull origin main
+   git log --since="yesterday" --pretty=format:"%h - %an: %s"
+   ```
+
+4. **Usando o VS Code com GitLens** (jeito mais fácil):
+   - Clique no ícone do GitLens na barra lateral
+   - Veja o histórico de commits com as mudanças visualmente
+   - Veja quem fez cada alteração, linha por linha
 
 ---
 
@@ -149,7 +188,7 @@ _Como o Git funciona na prática_
 
 ---
 
-### 🚀 **PASSO 3: Antes de Enviar para o GitHub (Push)**
+### 🚀 **PASSO 3: Antes de Enviar para o GitHub (Pull)**
 
 ⚠️ **Por que isso é importante**: Este passo evita que você apague o trabalho dos outros!
 
@@ -161,15 +200,33 @@ _Como o Git funciona na prática_
 
    > 💡 **Por que fazer isso de novo?**: Outros devs podem ter enviado código novo enquanto você trabalhava!
 
-#### Se **não houver conflitos**:
+---
 
-2. Envie suas alterações:
+### 🚀 **PASSO 4: Como Enviar para o GitHub (Push)**
+
+1. **Certifique-se de que fez o pull** (passo anterior)
+
+2. **Adicione mudanças** (caso tenha feito mais alguma):
+
+   ```bash
+   git add .
+   ```
+
+3. **Faça commit** (caso tenha feito mais mudanças):
+
+   ```bash
+   git commit -m "Descreva claramente o que você fez"
+   ```
+
+   > ⚠️ **IMPORTANTE**: Não esqueça de colocar o `-m` e a mensagem entre aspas!
+
+4. **Envie para o GitHub**:
 
    ```bash
    git push origin main
    ```
 
-   > 🎉 **Sucesso**:
+   > 🎉 **Quando dá certo**:
    >
    > ```
    > $ git push origin main
@@ -182,6 +239,44 @@ _Como o Git funciona na prática_
    > To github.com:empresa/projeto.git
    >    a2b5d63..e7f8g92  main -> main
    > ```
+
+#### Se aparecer erro de "branches divergentes" (como no exemplo abaixo):
+
+```
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint:   git config pull.rebase false  # merge
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+fatal: Need to specify how to reconcile divergent branches.
+```
+
+**O que isso significa?** Você e seu colega trabalharam ao mesmo tempo, e o Git não sabe como juntar as mudanças.
+
+**Como resolver (opção 1 - mais simples):**
+
+```bash
+git pull --no-rebase
+git push origin main
+```
+
+**Como resolver (opção 2 - mais limpa):**
+
+```bash
+git pull --rebase
+git push origin main
+```
+
+**Configurar uma vez para sempre:**
+
+```bash
+git config pull.rebase false  # Para sempre usar merge
+```
+
+Depois disso você só precisa usar `git pull` e `git push` normalmente.
+
+---
 
 #### Se **houver conflitos**:
 
@@ -237,7 +332,7 @@ _Como um conflito aparece no VS Code_
 
 ---
 
-### 👥 **PASSO 4: O Que o Outro Desenvolvedor Deve Fazer Depois**
+### 👥 **PASSO 5: O Que o Outro Desenvolvedor Deve Fazer Depois**
 
 1. Acesse a pasta do projeto:
 
@@ -356,6 +451,45 @@ _Quando ambos modificam o mesmo arquivo, o segundo precisa resolver_
 3. Depois que você resolver o conflito, quando ele fizer pull, receberá a versão final
 
 > 💡 **Conclusão importante**: Quem faz push primeiro "vence" - o segundo dev precisa resolver os conflitos. Por isso é tão importante fazer pull com frequência!
+
+### Cenário 3: Mesmo com arquivos diferentes - branches divergentes
+
+**O que acontece:**
+
+1. Você adiciona um novo arquivo (ex: `git-workflow.md`)
+2. Seu colega modifica outro arquivo (ex: `Gameinicial.js`)
+3. Seu colega faz push primeiro
+4. Você faz commit local, mas **mesmo sem conflito de conteúdo**, quando tenta fazer pull, aparece:
+   ```
+   hint: You have divergent branches and need to specify how to reconcile them.
+   hint: You can do so by running one of the following commands
+   ...
+   fatal: Need to specify how to reconcile divergent branches.
+   ```
+
+**Por que isso acontece?** Porque o Git não está apenas preocupado com o conteúdo dos arquivos, mas com a **linha do tempo** dos commits!
+
+**Como resolver:**
+
+```bash
+git pull --no-rebase     # Opção que cria um commit de merge
+git push origin main
+```
+
+**OU (melhor para repositórios maiores):**
+
+```bash
+git pull --rebase        # Reordena seus commits como se tivesse feito pull antes
+git push origin main
+```
+
+**Configurar de uma vez:**
+
+```bash
+git config pull.rebase false  # Escolha merge como padrão
+```
+
+> 💡 **Dica**: Mesmo sem conflito de conteúdo, pode haver conflito na linha do tempo, e isso é normal!
 
 ## 🌟 **Situações Comuns e Como Resolver**
 
@@ -510,7 +644,11 @@ _O ciclo diário do Git_
 ### ✅ Antes de enviar:
 
 - [ ] `git pull origin main`
-- [ ] Resolver conflitos (se tiver)
+
+### ✅ Como enviar:
+
+- [ ] `git add .` (se fez mais mudanças)
+- [ ] `git commit -m "Descreva as mudanças"` (se fez mais mudanças)
 - [ ] `git push origin main`
 
 ### ✅ Para todos os devs:
@@ -564,6 +702,9 @@ Quando a equipe ficar maior, considere usar:
 
 **P**: Como sei o que meus colegas fizeram recentemente?
 **R**: Use `git log --oneline -10` após fazer `git pull` para ver os últimos 10 commits.
+
+**P**: Por que está dando erro mesmo se eu só adicionei um arquivo novo?
+**R**: O Git controla a ordem dos commits, não só o conteúdo. Use `git pull --no-rebase` para resolver.
 
 ---
 
