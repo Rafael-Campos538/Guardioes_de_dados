@@ -1,6 +1,6 @@
 // ./src/cenas/menus/MenuPrincipal.js
 
-class MenuPrincipal extends Phaser.Scene {
+export default class MenuPrincipal extends Phaser.Scene {
   constructor() {
     super({ key: "MenuPrincipal" });
   }
@@ -116,4 +116,3 @@ class MenuPrincipal extends Phaser.Scene {
   }
 }
 
-window.MenuPrincipal = MenuPrincipal;

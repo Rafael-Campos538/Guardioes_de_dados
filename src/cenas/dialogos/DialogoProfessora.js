@@ -1,6 +1,6 @@
 // ./src/cenas/dialogos/DialogoProfessora.js
 
-class DialogoProfessora extends Phaser.Scene {
+export default class DialogoProfessora extends Phaser.Scene {
   constructor() {
     super({ key: "DialogoProfessora" });
   }
@@ -211,4 +211,3 @@ class DialogoProfessora extends Phaser.Scene {
   }
 }
 
-window.DialogoProfessora = DialogoProfessora;

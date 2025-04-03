@@ -1,6 +1,6 @@
 // ./src/cenas/mini-games/celular/JogoCelular.js
 
-class JogoCelular extends Phaser.Scene {
+export default class JogoCelular extends Phaser.Scene {
   constructor() {
     super({ key: "JogoCelular" });
   }
@@ -113,4 +113,3 @@ class JogoCelular extends Phaser.Scene {
   }
 }
 
-window.JogoCelular = JogoCelular;

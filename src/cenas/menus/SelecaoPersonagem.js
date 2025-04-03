@@ -1,14 +1,14 @@
 // ./src/cenas/menus/SelecaoPersonagem.js
 
-class SelecaoPersonagem extends Phaser.Scene {
+export default class SelecaoPersonagem extends Phaser.Scene {
   constructor() {
     super({ key: "SelecaoPersonagem" });
   }
 
   preload() {
-    this.load.image("menina1", "assets/personagens/menina1.png");
-    this.load.image("menino1", "assets/personagens/menino1.png");
-    this.load.image("menino3", "assets/personagens/menino3.png");
+    this.load.image("menina1", "assets/personagens/estaticos/menina1.png");
+    this.load.image("menino1", "assets/personagens/estaticos/menina1.png");
+    this.load.image("menino3", "assets/personagens/estaticos/menino3.png");
     this.load.image("confirmar", "assets/imagens/botoes/confirmar.png");
   }
 
@@ -54,4 +54,3 @@ class SelecaoPersonagem extends Phaser.Scene {
   }
 }
 
-window.SelecaoPersonagem = SelecaoPersonagem;

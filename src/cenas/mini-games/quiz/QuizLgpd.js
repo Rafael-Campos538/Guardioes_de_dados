@@ -1,6 +1,6 @@
 // ./src/cenas/mini-games/quiz/QuizLgpd.js
 
-class QuizLgpd extends Phaser.Scene {
+export default class QuizLgpd extends Phaser.Scene {
   constructor() {
     super({ key: "QuizLgpd" });
   }
@@ -238,4 +238,3 @@ class QuizLgpd extends Phaser.Scene {
   }
 }
 
-window.QuizLgpd = QuizLgpd;

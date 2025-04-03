@@ -1,6 +1,6 @@
 // ./src/cenas/mini-games/celular/TelaIntroducao.js
 
-class TelaIntroducao extends Phaser.Scene {
+export default class TelaIntroducao extends Phaser.Scene {
   constructor() {
     super({ key: "TelaIntroducao" });
   }
@@ -154,4 +154,3 @@ class TelaIntroducao extends Phaser.Scene {
   }
 }
 
-window.TelaIntroducao = TelaIntroducao;

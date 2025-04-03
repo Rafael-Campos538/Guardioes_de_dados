@@ -1,6 +1,6 @@
 // ./src/cenas/dialogos/DialogoInicial.js
 
-class DialogoInicial extends Phaser.Scene {
+export default class DialogoInicial extends Phaser.Scene {
   constructor() {
     super({ key: "DialogoInicial" });
   }
@@ -14,9 +14,9 @@ class DialogoInicial extends Phaser.Scene {
     );
     this.load.image(
       "homemcabelopreto",
-      "assets/imagens/personagens/homem_cabelo_preto.png"
+      "assets/personagens/estaticos/homem_cabelo_preto.png"
     );
-    this.load.image("cientista", "assets/imagens/personagens/cientista.png");
+    this.load.image("cientista", "assets/personagens/estaticos/cientista.png");
     this.load.image(
       "botao_retangular",
       "assets/imagens/botoes/botao_retangular.png"
@@ -226,4 +226,3 @@ class DialogoInicial extends Phaser.Scene {
   }
 }
 
-window.DialogoInicial = DialogoInicial;

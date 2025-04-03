@@ -1,6 +1,6 @@
 // ./src/cenas/mapas/MapaEscola.js
 
-class MapaEscola extends Phaser.Scene {
+export default class MapaEscola extends Phaser.Scene {
   constructor() {
     super({ key: "MapaEscola" });
   }
@@ -261,4 +261,3 @@ class MapaEscola extends Phaser.Scene {
   }
 }
 
-window.MapaEscola = MapaEscola;

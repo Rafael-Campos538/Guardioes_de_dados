@@ -1,6 +1,6 @@
 // ./src/cenas/mini-games/celular/InterfaceCelular.js
 
-class InterfaceCelular extends Phaser.Scene {
+export default class InterfaceCelular extends Phaser.Scene {
   constructor() {
     super({ key: "InterfaceCelular" });
   }
@@ -122,4 +122,3 @@ class InterfaceCelular extends Phaser.Scene {
   }
 }
 
-window.InterfaceCelular = InterfaceCelular;

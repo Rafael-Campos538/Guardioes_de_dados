@@ -1,6 +1,5 @@
 // ./src/config.js
 
-// Import all scenes dynamically
 import MainMenu from "./cenas/menus/MenuPrincipal.js";
 import SelecaoPersonagem from "./cenas/menus/SelecaoPersonagem.js";
 import DialogoInicial from "./cenas/dialogos/DialogoInicial.js";
@@ -10,8 +9,8 @@ import JogoCelular from "./cenas/mini-games/celular/JogoCelular.js";
 import InterfaceCelular from "./cenas/mini-games/celular/InterfaceCelular.js";
 import TelaIntroducao from "./cenas/mini-games/celular/TelaIntroducao.js";
 import QuizLgpd from "./cenas/mini-games/quiz/QuizLgpd.js";
+import DialogoProfessora from "./cenas/dialogos/DialogoProfessora.js";
 
-// Game configuration
 const config = {
   type: Phaser.AUTO,
   width: window.innerWidth,
@@ -26,6 +25,7 @@ const config = {
     InterfaceCelular,
     TelaIntroducao,
     QuizLgpd,
+    DialogoProfessora,
   ],
   scale: {
     mode: Phaser.Scale.RESIZE,

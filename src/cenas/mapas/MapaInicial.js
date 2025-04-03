@@ -1,6 +1,6 @@
 // ./src/cenas/mapas/MapaInicial.js
 
-class MapaInicial extends Phaser.Scene {
+export default class MapaInicial extends Phaser.Scene {
   constructor() {
     super({ key: "MapaInicial" });
   }
@@ -27,14 +27,21 @@ class MapaInicial extends Phaser.Scene {
   preload() {
     this.load.image("cena1", "assets/imagens/cenarios/cena_1.png");
 
-    this.load.spritesheet("menina1", "assets/personagens/menina1.png", {
-      frameWidth: 64,
-      frameHeight: 64,
-    });
+    // Carregar spritesheet corretamente
+    this.load.spritesheet(
+      "menina1",
+      "assets/personagens/spritesheets/menina1.png",
+      {
+        frameWidth: 64, // Cada frame tem 64 pixels de largura
+        frameHeight: 64, // Cada frame tem 64 pixels de altura
+        startFrame: 0, // Começando do primeiro frame
+        endFrame: 20, // Total de 21 frames (0-20)
+      }
+    );
 
     this.load.spritesheet(
       "passarinho",
-      "assets/imagens/personagens/passarinho.png",
+      "assets/personagens/spritesheets/passarinho.png",
       {
         frameWidth: 384,
         frameHeight: 384,
@@ -73,18 +80,14 @@ class MapaInicial extends Phaser.Scene {
       loop: true,
     });
 
-    //animacao player
+    // Animações para a menina
     this.anims.create({
       key: "turn",
-      frames: [{ key: "menina1", frame: 1 }],
+      frames: [{ key: "menina1", frame: 0 }],
       frameRate: 20,
     });
-    this.anims.create({
-      key: "up",
-      frames: this.anims.generateFrameNumbers("menina1", { start: 7, end: 13 }),
-      frameRate: 10,
-      repeat: -1,
-    });
+
+    // Animação para baixo (frames 0-6)
     this.anims.create({
       key: "down",
       frames: this.anims.generateFrameNumbers("menina1", { start: 0, end: 6 }),
@@ -92,6 +95,15 @@ class MapaInicial extends Phaser.Scene {
       repeat: -1,
     });
 
+    // Animação para cima (frames 7-13)
+    this.anims.create({
+      key: "up",
+      frames: this.anims.generateFrameNumbers("menina1", { start: 7, end: 13 }),
+      frameRate: 10,
+      repeat: -1,
+    });
+
+    // Animação para esquerda/direita (frames 14-20)
     this.anims.create({
       key: "left",
       frames: this.anims.generateFrameNumbers("menina1", {
@@ -101,6 +113,7 @@ class MapaInicial extends Phaser.Scene {
       frameRate: 10,
       repeat: -1,
     });
+
     this.anims.create({
       key: "right",
       frames: this.anims.generateFrameNumbers("menina1", {
@@ -110,19 +123,22 @@ class MapaInicial extends Phaser.Scene {
       frameRate: 10,
       repeat: -1,
     });
+
+    // Configurar teclas de cursor
     this.cursors = this.input.keyboard.createCursorKeys();
 
-    //passarinho
+    // Configurar passarinho
     this.passarinho = this.add
       .sprite(this.xi, this.yi, "passarinho")
       .setScale(0.2);
 
+    // Animação do passarinho
     this.anims.create({
       key: "fly",
       frames: this.anims.generateFrameNumbers("passarinho", {
         start: 0,
         end: 8,
-      }), //animaçao do passarinho
+      }),
       frameRate: 10,
       repeat: -1,
     });
@@ -190,5 +206,3 @@ class MapaInicial extends Phaser.Scene {
     }
   }
 }
-
-window.MapaInicial = MapaInicial;
