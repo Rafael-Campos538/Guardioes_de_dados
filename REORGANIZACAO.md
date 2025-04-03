@@ -209,17 +209,6 @@ Estabeleci os seguintes padrões de nomenclatura que devemos seguir rigorosament
 │   │   ├── 📁 feedback/
 │   │   │   ├── correto.png
 │   │   │   └── incorreto.png
-│   │   ├── 📁 personagens/
-│   │   │   ├── agente_p.png
-│   │   │   ├── cientista.png
-│   │   │   ├── funcionario.png
-│   │   │   ├── homem_cabelo_preto.png
-│   │   │   ├── mulher_jogo.png
-│   │   │   ├── passarinho.png
-│   │   │   ├── personagens_jogaveis.png
-│   │   │   ├── professor_jorge.png
-│   │   │   ├── professora_base.png
-│   │   │   └── professora_claudia.png
 │   │   └── 📁 ui/
 │   │       ├── caixadialogo.png
 │   │       ├── menu_principal_titulo.png
@@ -241,13 +230,14 @@ Estabeleci os seguintes padrões de nomenclatura que devemos seguir rigorosament
 │   │   ├── meta.png
 │   │   ├── principal.json
 │   │   └── tech2.png
-│   ├── 📁 personagens/
+│   ├── 📁 personagens/ (ainda coloquei divisão em estaticos/ e spritesheets/ para deixar mais organizado)
 │   │   ├── cadeirante.png
 │   │   ├── menina1.png
 │   │   ├── menina2BIO.png
 │   │   ├── menina3.png
 │   │   ├── menino1.png
-│   │   ├── menino3.png              
+│   │   ├── menino3.png 
+│   │   ├── ... (enfim, todas as imagens de personagens)             
 │   │   └── 📁 animacoes/
 │   └── 📁 sons/                  
 │       ├── 📁 efeitos/
