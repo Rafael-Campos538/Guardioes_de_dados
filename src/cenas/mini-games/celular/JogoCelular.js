@@ -1,14 +1,23 @@
-// ./src/Gamedoismini.js
+// ./src/cenas/mini-games/celular/JogoCelular.js
 
-class Gamedoismini extends Phaser.Scene {
+class JogoCelular extends Phaser.Scene {
   constructor() {
-    super({ key: "Gamedoismini" });
+    super({ key: "JogoCelular" });
   }
 
   preload() {
-    this.load.image("fundominigame2", "assets/imagens/fundominigame2.png");
-    this.load.image("celulargrupos", "assets/imagens/celulargrupos.png");
-    this.load.image("setaentrargrupo", "assets/imagens/setaentrargrupo.png");
+    this.load.image(
+      "fundominigame2",
+      "assets/imagens/cenarios/fundominigame2.png"
+    );
+    this.load.image(
+      "celulargrupos",
+      "assets/imagens/celular/celulargrupos.png"
+    );
+    this.load.image(
+      "setaentrargrupo",
+      "assets/imagens/celular/setaentrargrupo.png"
+    );
   }
 
   create() {
@@ -18,7 +27,7 @@ class Gamedoismini extends Phaser.Scene {
     // Tornando as setas interativas
     this.seta.setInteractive(); // Tornar a primeira seta clicável
     this.seta.on("pointerdown", () => {
-      this.scene.start("Celulargrupoum"); // Mudar para a cena 'Celulargrupoum' ao clicar na primeira seta
+      this.scene.start("InterfaceCelular"); // Atualizado para o novo nome da cena
     });
 
     // Interatividade para a segunda seta
@@ -104,4 +113,4 @@ class Gamedoismini extends Phaser.Scene {
   }
 }
 
-window.Gamedoismini = Gamedoismini;
+window.JogoCelular = JogoCelular;

@@ -1,53 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LGPD Game</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LGPD Game</title>
 
-  <style>
-    @font-face {
-        font-family: 'rainyhearts';
-        src: url('assets/fonts/rainyhearts') format('truetype');
-    }
+    <style>
+      @font-face {
+        font-family: "rainyhearts";
+        src: url("assets/fonts/rainyhearts.ttf") format("truetype");
+      }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background-color: black;
-      font-family: 'rainyhearts', sans-serif;
-      text-rendering: optimizeLegibility;
-    }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: black;
+        font-family: "rainyhearts", sans-serif;
+        text-rendering: optimizeLegibility;
+      }
 
-    canvas {
-      display: block;
-    }
-  </style>
-</head>
-<body>
-  <!-- Agora todos os scripts apontam para a pasta src -->
-  <script src="src/phaser.js"></script>
-  <script src="src/MainMenu.js"></script>
-  <script src="src/Personagens.js"></script>
-  <script src="src/ChooseRole.js"></script>
-  <script src="src/Conversation.js"></script>
-  <script src="src/Conversationdois.js"></script>
-  <script src="src/Gamedoismini.js"></script>
-  <script src="src/Celulargrupoum.js"></script>
-  <script src="src/Telaminigamedois.js"></script>
-  <script src="src/Minigamedois.js"></script>
-  <script src="src/Mapacenaini.js"></script>
-  <script src="src/Cenainicial.js"></script>
-  <script src="src/CenaEscola.js"></script>
-  <script src="src/Gameinicial.js"></script>
-  <script src="src/game.js"></script>
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Biblioteca Phaser -->
+    <script src="src/phaser.js"></script>
 
-</body>
+    <!-- Main game script with module type -->
+    <script type="module" src="src/index.js"></script>
+  </body>
 </html>

@@ -1,8 +1,8 @@
-// ./src/Cenainicial.js
+// ./src/cenas/mapas/MapaInicial.js
 
-class Cenainicial extends Phaser.Scene {
+class MapaInicial extends Phaser.Scene {
   constructor() {
-    super({ key: "Cenainicial" });
+    super({ key: "MapaInicial" });
   }
 
   // Método correto para inicializar variáveis ao iniciar a cena
@@ -25,17 +25,21 @@ class Cenainicial extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("Cena1", "assets/imagens/fundocenaini.png");
+    this.load.image("cena1", "assets/imagens/cenarios/cena_1.png");
 
-    this.load.spritesheet("menina1", "assets/personsasa/menina1.png", {
+    this.load.spritesheet("menina1", "assets/personagens/menina1.png", {
       frameWidth: 64,
       frameHeight: 64,
     });
 
-    this.load.spritesheet("passarinho", "assets/imagens/passarinho.png", {
-      frameWidth: 384,
-      frameHeight: 384,
-    });
+    this.load.spritesheet(
+      "passarinho",
+      "assets/imagens/personagens/passarinho.png",
+      {
+        frameWidth: 384,
+        frameHeight: 384,
+      }
+    );
   }
 
   create() {
@@ -45,7 +49,7 @@ class Cenainicial extends Phaser.Scene {
     this.cameras.main.setZoom(1.5);
 
     const background = this.add
-      .image(0, 0, "Cena1")
+      .image(0, 0, "cena1")
       .setOrigin(0, 0)
       .setDisplaySize(
         this.cameras.main.width * 1.5,
@@ -155,7 +159,7 @@ class Cenainicial extends Phaser.Scene {
       this.player.y < this.cube.y + this.cube.height / 2 &&
       this.player.y > this.cube.y - this.cube.height / 2
     ) {
-      this.scene.start("CenaEscola"); // Troca para CenaEscola
+      this.scene.start("MapaEscola"); // Atualizado para o novo nome da cena
     }
 
     //passarinho
@@ -187,4 +191,4 @@ class Cenainicial extends Phaser.Scene {
   }
 }
 
-window.Cenainicial = Cenainicial;
+window.MapaInicial = MapaInicial;

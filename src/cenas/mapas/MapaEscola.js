@@ -1,36 +1,99 @@
-// ./src/CenaEscola.js
+// ./src/cenas/mapas/MapaEscola.js
 
-class CenaEscola extends Phaser.Scene {
+class MapaEscola extends Phaser.Scene {
   constructor() {
-    super({ key: "CenaEscola" });
+    super({ key: "MapaEscola" });
   }
 
   preload() {
-    this.load.image("Cena2", "assets/imagens/fundoesolaini.png");
+    this.load.image("cena2", "assets/imagens/cenarios/fundoesolaini.png");
 
-    this.load.image("bonecodir0", "assets/personagens/bonecodir0.png");
-    this.load.image("bonecodir1", "assets/personagens/bonecodir1.png");
-    this.load.image("bonecodir2", "assets/personagens/bonecodir2.png");
-    this.load.image("bonecodir3", "assets/personagens/bonecodir3.png");
-    this.load.image("bonecodir4", "assets/personagens/bonecodir4.png");
-    this.load.image("bonecodir5", "assets/personagens/bonecodir5.png");
-    this.load.image("bonecodir6", "assets/personagens/bonecodir6.png");
+    this.load.image(
+      "bonecodir0",
+      "assets/personagens/animacoes/bonecodir0.png"
+    );
+    this.load.image(
+      "bonecodir1",
+      "assets/personagens/animacoes/bonecodir1.png"
+    );
+    this.load.image(
+      "bonecodir2",
+      "assets/personagens/animacoes/bonecodir2.png"
+    );
+    this.load.image(
+      "bonecodir3",
+      "assets/personagens/animacoes/bonecodir3.png"
+    );
+    this.load.image(
+      "bonecodir4",
+      "assets/personagens/animacoes/bonecodir4.png"
+    );
+    this.load.image(
+      "bonecodir5",
+      "assets/personagens/animacoes/bonecodir5.png"
+    );
+    this.load.image(
+      "bonecodir6",
+      "assets/personagens/animacoes/bonecodir6.png"
+    );
 
-    this.load.image("bonecobax0", "assets/personagens/bonecobax0.png");
-    this.load.image("bonecobax1", "assets/personagens/bonecobax1.png");
-    this.load.image("bonecobax2", "assets/personagens/bonecobax2.png");
-    this.load.image("bonecobax3", "assets/personagens/bonecobax3.png");
-    this.load.image("bonecobax4", "assets/personagens/bonecobax4.png");
-    this.load.image("bonecobax5", "assets/personagens/bonecobax5.png");
-    this.load.image("bonecobax6", "assets/personagens/bonecobax6.png");
+    this.load.image(
+      "bonecobax0",
+      "assets/personagens/animacoes/bonecobax0.png"
+    );
+    this.load.image(
+      "bonecobax1",
+      "assets/personagens/animacoes/bonecobax1.png"
+    );
+    this.load.image(
+      "bonecobax2",
+      "assets/personagens/animacoes/bonecobax2.png"
+    );
+    this.load.image(
+      "bonecobax3",
+      "assets/personagens/animacoes/bonecobax3.png"
+    );
+    this.load.image(
+      "bonecobax4",
+      "assets/personagens/animacoes/bonecobax4.png"
+    );
+    this.load.image(
+      "bonecobax5",
+      "assets/personagens/animacoes/bonecobax5.png"
+    );
+    this.load.image(
+      "bonecobax6",
+      "assets/personagens/animacoes/bonecobax6.png"
+    );
 
-    this.load.image("bonecocim0", "assets/personagens/bonecocim0.png");
-    this.load.image("bonecocim1", "assets/personagens/bonecocim1.png");
-    this.load.image("bonecocim2", "assets/personagens/bonecocim2.png");
-    this.load.image("bonecocim3", "assets/personagens/bonecocim3.png");
-    this.load.image("bonecocim4", "assets/personagens/bonecocim4.png");
-    this.load.image("bonecocim5", "assets/personagens/bonecocim5.png");
-    this.load.image("bonecocim6", "assets/personagens/bonecocim6.png");
+    this.load.image(
+      "bonecocim0",
+      "assets/personagens/animacoes/bonecocim0.png"
+    );
+    this.load.image(
+      "bonecocim1",
+      "assets/personagens/animacoes/bonecocim1.png"
+    );
+    this.load.image(
+      "bonecocim2",
+      "assets/personagens/animacoes/bonecocim2.png"
+    );
+    this.load.image(
+      "bonecocim3",
+      "assets/personagens/animacoes/bonecocim3.png"
+    );
+    this.load.image(
+      "bonecocim4",
+      "assets/personagens/animacoes/bonecocim4.png"
+    );
+    this.load.image(
+      "bonecocim5",
+      "assets/personagens/animacoes/bonecocim5.png"
+    );
+    this.load.image(
+      "bonecocim6",
+      "assets/personagens/animacoes/bonecocim6.png"
+    );
   }
 
   create() {
@@ -40,7 +103,7 @@ class CenaEscola extends Phaser.Scene {
     this.cameras.main.setZoom(1.5);
 
     const background = this.add
-      .image(0, 0, "Cena2")
+      .image(0, 0, "cena2")
       .setOrigin(0, 0)
       .setDisplaySize(
         this.cameras.main.width * 1.5,
@@ -193,9 +256,9 @@ class CenaEscola extends Phaser.Scene {
       this.player.y < this.cube.y + this.cube.height / 2 &&
       this.player.y > this.cube.y - this.cube.height / 2
     ) {
-      this.scene.start("Telaminigamedois"); // Troca para o inicio do minigame
+      this.scene.start("TelaIntroducao"); // Atualizado para o novo nome da cena
     }
   }
 }
 
-window.CenaEscola = CenaEscola;
+window.MapaEscola = MapaEscola;

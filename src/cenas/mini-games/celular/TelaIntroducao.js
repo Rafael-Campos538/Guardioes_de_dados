@@ -1,22 +1,28 @@
-// ./src/Telaminigamedois.js
+// ./src/cenas/mini-games/celular/TelaIntroducao.js
 
-class Telaminigamedois extends Phaser.Scene {
+class TelaIntroducao extends Phaser.Scene {
   constructor() {
-    super({ key: "Telaminigamedois" });
+    super({ key: "TelaIntroducao" });
   }
 
   preload() {
     // Carregar a imagem de fundo e a imagem da missão
-    this.load.image("fundminigame2", "assets/imagens/fundominigame2.png");
-    this.load.image("missao", "assets/imagens/missao2ini.png");
-    this.load.image("botao_retangular", "assets/imagens/botao_retangular.png");
-    this.load.image("seta", "assets/imagens/seta.png"); // Adicionando a seta
+    this.load.image(
+      "fundminigame2",
+      "assets/imagens/cenarios/fundominigame2.png"
+    );
+    this.load.image("missao", "assets/imagens/ui/missao2ini.png");
+    this.load.image(
+      "botao_retangular",
+      "assets/imagens/botoes/botao_retangular.png"
+    );
+    this.load.image("seta", "assets/imagens/ui/seta.png"); // Verificar se este arquivo existe
 
     // Carregar a fonte
-    this.load.font("Rainyhearts", "assets/fonts/rainyhearts.ttf");
+    this.load.font("Rainyhearts", "assets/fontes/rainyhearts.ttf");
 
     // Carregar o som de clique
-    this.load.audio("abrirCelular", "assets/sons/abrir_celular.mp3");
+    this.load.audio("abrirCelular", "assets/sons/efeitos/abrir_celular.mp3");
   }
 
   create() {
@@ -115,7 +121,7 @@ class Telaminigamedois extends Phaser.Scene {
     textoBotao2.setInteractive().on("pointerdown", () => {
       let somClique = this.sound.add("abrirCelular", { loop: false });
       somClique.play();
-      // Iniciar a transição de fade para a cena "Conversationdois"
+      // Iniciar a transição de fade para a cena "DialogoProfessora"
       this.tweens.add({
         targets: this.cameras.main,
         alpha: 0,
@@ -123,7 +129,7 @@ class Telaminigamedois extends Phaser.Scene {
         ease: "Linear",
         onComplete: () => {
           // Após a transição de fade, trocar a cena
-          this.scene.start("Conversationdois");
+          this.scene.start("DialogoProfessora"); // Atualizado para o novo nome da cena
         },
       });
     });
@@ -148,4 +154,4 @@ class Telaminigamedois extends Phaser.Scene {
   }
 }
 
-window.Telaminigamedois = Telaminigamedois;
+window.TelaIntroducao = TelaIntroducao;

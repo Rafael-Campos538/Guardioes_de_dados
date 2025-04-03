@@ -1,21 +1,33 @@
-// ./src/Conversationdois.js
+// ./src/cenas/dialogos/DialogoProfessora.js
 
-class Conversationdois extends Phaser.Scene {
+class DialogoProfessora extends Phaser.Scene {
   constructor() {
-    super({ key: "Conversationdois" });
+    super({ key: "DialogoProfessora" });
   }
 
   preload() {
-    this.load.font("Rainyhearts", "assets/fonts/rainyhearts.ttf");
-    this.load.image("caixa_dialogo", "assets/imagens/caixadialogo.png");
-    this.load.image("fundominigame2", "assets/imagens/fundominigame2.png");
-    this.load.image("homemcabelopreto", "assets/imagens/homemcabelopreto.png");
-    this.load.image("profprof", "assets/imagens/professora.png");
-    this.load.image("botao_retangular", "assets/imagens/botao_retangular.png");
+    this.load.font("Rainyhearts", "assets/fontes/rainyhearts.ttf");
+    this.load.image("caixa_dialogo", "assets/imagens/ui/caixadialogo.png");
+    this.load.image(
+      "fundominigame2",
+      "assets/imagens/cenarios/fundominigame2.png"
+    );
+    this.load.image(
+      "homem_cabelo_preto",
+      "assets/imagens/personagens/homem_cabelo_preto.png"
+    );
+    this.load.image(
+      "professora_base",
+      "assets/imagens/personagens/professora_base.png"
+    );
+    this.load.image(
+      "botao_retangular",
+      "assets/imagens/botoes/botao_retangular.png"
+    );
 
     // Sons
-    this.load.audio("digitacao", "assets/sons/digitacao_conv.mp3");
-    this.load.audio("abrirCelular", "assets/sons/abrir_celular.mp3");
+    this.load.audio("digitacao", "assets/sons/efeitos/digitacao_conv.mp3");
+    this.load.audio("abrirCelular", "assets/sons/efeitos/abrir_celular.mp3");
   }
 
   create() {
@@ -39,13 +51,13 @@ class Conversationdois extends Phaser.Scene {
       {
         personagem: "Professora.",
         texto: "Olá, boas vindas a nossa escola. Como posso te ajudar?",
-        img: "profprof",
+        img: "professora_base",
       },
       {
         personagem: "Agente P.",
         texto:
           "Você é a professora responsável por criar o grupo de mensagens com os seus alunos?",
-        img: "homemcabelopreto",
+        img: "homem_cabelo_preto",
       },
       {
         personagem: "NARRADOR",
@@ -61,14 +73,14 @@ class Conversationdois extends Phaser.Scene {
       .image(
         centerX - largura * 0.14,
         centerY + altura * 0.007,
-        "homemcabelopreto"
+        "homem_cabelo_preto"
       )
       .setOrigin(0.5)
       .setScale(largura * 0.001);
 
     // Personagem à direita da caixa de diálogo
     this.personagemDireita = this.add
-      .image(centerX + largura * 0.3, centerY + altura * 0.3, "profprof")
+      .image(centerX + largura * 0.3, centerY + altura * 0.3, "professora_base")
       .setOrigin(0.5)
       .setScale(largura * 0.0003); // Tamanho reduzido
 
@@ -137,10 +149,10 @@ class Conversationdois extends Phaser.Scene {
     this.aplicarEfeitoDigitar(fala.texto);
 
     // Exibe o personagem correto com base na fala
-    if (fala.img === "homemcabelopreto") {
+    if (fala.img === "homem_cabelo_preto") {
       this.personagemEsquerda.setVisible(true);
       this.personagemDireita.setVisible(false);
-    } else if (fala.img === "profprof") {
+    } else if (fala.img === "professora_base") {
       this.personagemEsquerda.setVisible(false);
       this.personagemDireita.setVisible(true);
     }
@@ -186,7 +198,7 @@ class Conversationdois extends Phaser.Scene {
     } else {
       this.sound.stopAll();
       this.cameras.main.fadeOut(500, 0, 0, 0);
-      this.time.delayedCall(500, () => this.scene.start("Gamedoismini"));
+      this.time.delayedCall(500, () => this.scene.start("JogoCelular"));
     }
   }
 
@@ -199,4 +211,4 @@ class Conversationdois extends Phaser.Scene {
   }
 }
 
-window.Conversationdois = Conversationdois;
+window.DialogoProfessora = DialogoProfessora;

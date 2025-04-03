@@ -1,23 +1,32 @@
-// ./src/Gameinicial.js
+// ./src/cenas/mini-games/quiz/QuizLgpd.js
 
-class Gameinicial extends Phaser.Scene {
+class QuizLgpd extends Phaser.Scene {
   constructor() {
-    super({ key: "Gameinicial" });
+    super({ key: "QuizLgpd" });
   }
 
   preload() {
     // Carregar imagens necessárias para feedback e botões
-    this.load.image("feedback_positivo", "assets/imagens/correto.png");
-    this.load.image("feedback_negativo", "assets/imagens/incorreto.png");
-    this.load.image("background", "assets/imagens/fundoMiniGame1.png");
-    this.load.image("botao_verde", "assets/imagens/botaoverde.png");
-    this.load.image("botao_vermelho", "assets/imagens/botaovermelho.png");
+    this.load.image("feedback_positivo", "assets/imagens/feedback/correto.png");
+    this.load.image(
+      "feedback_negativo",
+      "assets/imagens/feedback/incorreto.png"
+    );
+    this.load.image(
+      "background",
+      "assets/imagens/cenarios/fundo_mini_game_1.png"
+    );
+    this.load.image("botao_verde", "assets/imagens/botoes/botaoverde.png");
+    this.load.image(
+      "botao_vermelho",
+      "assets/imagens/botoes/botaovermelho.png"
+    );
 
     // Carregar a fonte personalizada 'rainyhearts' para o texto
     this.load.bitmapFont(
       "rainyhearts",
-      "assets/fonts/rainyhearts.png",
-      "assets/fonts/rainyhearts.fnt"
+      "assets/fontes/rainyhearts.png",
+      "assets/fontes/rainyhearts.fnt"
     );
   }
 
@@ -159,9 +168,9 @@ class Gameinicial extends Phaser.Scene {
         // Iniciar o fadeOut da cena atual para dar o efeito de transição
         this.cameras.main.fadeOut(1000, 0, 0, 0); // FadeOut de 1 segundo
 
-        // Quando o fadeOut for concluído, muda para a cena "Cenainicial"
+        // Quando o fadeOut for concluído, muda para a cena "MapaInicial"
         this.cameras.main.on("camerafadeoutcomplete", () => {
-          this.scene.start("Cenainicial"); // Troca para a cena Cenainicial
+          this.scene.start("MapaInicial"); // Atualizado para o novo nome da cena
 
           // Inicia o fadeIn da nova cena
           this.cameras.main.fadeIn(1000, 0, 0, 0); // FadeIn de 1 segundo
@@ -228,3 +237,5 @@ class Gameinicial extends Phaser.Scene {
     this.mostrarPergunta(); // Mostra a próxima pergunta
   }
 }
+
+window.QuizLgpd = QuizLgpd;

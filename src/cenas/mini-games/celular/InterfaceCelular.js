@@ -1,19 +1,37 @@
-// ./src/Celulargrupoum.js
+// ./src/cenas/mini-games/celular/InterfaceCelular.js
 
-class Celulargrupoum extends Phaser.Scene {
+class InterfaceCelular extends Phaser.Scene {
   constructor() {
-    super({ key: "Celulargrupoum" });
+    super({ key: "InterfaceCelular" });
   }
 
   preload() {
-    this.load.image("fundominigame2", "assets/imagens/fundominigame2.png"); // Fundo
-    this.load.image("celularmensagens", "assets/imagens/celularmensagens.png"); // Imagem do celular
-    this.load.image("deletargrupo", "assets/imagens/deletargrupo.png"); // Imagem do botão
-    this.load.image("mensagemclaud", "assets/imagens/mensagemclaud.png"); // Imagem da mensagem da Claudia
-    this.load.image("mensagemjoao", "assets/imagens/mensagemjoao.png"); // Imagem da mensagem do João
-    this.load.image("mensagemana", "assets/imagens/mensagemana.png"); // Imagem da mensagem da Ana
-    this.load.image("mensagempedro", "assets/imagens/mensagempedro.png"); // Imagem da mensagem do Pedro
-    this.load.image("eoxiscell", "assets/imagens/eoxiscell.png"); // Ícone de exclusão ao lado das mensagens
+    this.load.image(
+      "fundominigame2",
+      "assets/imagens/cenarios/fundominigame2.png"
+    ); // Fundo
+    this.load.image(
+      "celularmensagens",
+      "assets/imagens/celular/celularmensagens.png"
+    ); // Imagem do celular
+    this.load.image("deletargrupo", "assets/imagens/celular/deletargrupo.png"); // Imagem do botão
+    this.load.image(
+      "mensagem_claudia",
+      "assets/imagens/celular/mensagem_claudia.png"
+    ); // Imagem da mensagem da Claudia
+    this.load.image(
+      "mensagem_joao",
+      "assets/imagens/celular/mensagem_joao.png"
+    ); // Imagem da mensagem do João
+    this.load.image("mensagem_ana", "assets/imagens/celular/mensagem_ana.png"); // Imagem da mensagem da Ana
+    this.load.image(
+      "mensagem_pedro",
+      "assets/imagens/celular/mensagem_pedro.png"
+    ); // Imagem da mensagem do Pedro
+    this.load.image(
+      "excluir_mensagem",
+      "assets/imagens/celular/excluir_mensagem.png"
+    ); // Ícone de exclusão ao lado das mensagens
   }
 
   create() {
@@ -45,25 +63,25 @@ class Celulargrupoum extends Phaser.Scene {
     this.criarMensagem(
       centerX,
       centerY - altura * 0.2,
-      "mensagemclaud",
+      "mensagem_claudia",
       "eoxisClaud"
     );
     this.criarMensagem(
       centerX,
       centerY - altura * 0.057,
-      "mensagemjoao",
+      "mensagem_joao",
       "eoxisJoao"
     );
     this.criarMensagem(
       centerX,
       centerY + altura * 0.08,
-      "mensagemana",
+      "mensagem_ana",
       "eoxisAna"
     );
     this.criarMensagem(
       centerX,
       centerY + altura * 0.222,
-      "mensagempedro",
+      "mensagem_pedro",
       "eoxisPedro"
     );
 
@@ -89,7 +107,11 @@ class Celulargrupoum extends Phaser.Scene {
       .setScale(Math.min(largura, altura) * 0.00053);
 
     let eoxis = this.add
-      .image(centerX + largura * 0.053, posY + altura * 0.01, "eoxiscell")
+      .image(
+        centerX + largura * 0.053,
+        posY + altura * 0.01,
+        "excluir_mensagem"
+      )
       .setOrigin(0.5)
       .setScale(Math.min(largura, altura) * 0.0014)
       .setInteractive()
@@ -100,4 +122,4 @@ class Celulargrupoum extends Phaser.Scene {
   }
 }
 
-window.Celulargrupoum = Celulargrupoum;
+window.InterfaceCelular = InterfaceCelular;

@@ -1,24 +1,30 @@
-// ./src/Conversation.js
+// ./src/cenas/dialogos/DialogoInicial.js
 
-class Conversation extends Phaser.Scene {
+class DialogoInicial extends Phaser.Scene {
   constructor() {
-    super({ key: "Conversation" });
+    super({ key: "DialogoInicial" });
   }
 
   preload() {
-    this.load.font("Rainyhearts", "assets/fonts/rainyhearts.ttf");
-    this.load.image("caixa_dialogo", "assets/imagens/caixadialogo.png");
+    this.load.font("Rainyhearts", "assets/fontes/rainyhearts.ttf");
+    this.load.image("caixa_dialogo", "assets/imagens/ui/caixadialogo.png");
     this.load.image(
       "fundoconversation",
-      "assets/imagens/fundoconversation.png"
+      "assets/imagens/cenarios/fundoconversation.png"
     );
-    this.load.image("homemcabelopreto", "assets/imagens/homemcabelopreto.png");
-    this.load.image("cientista", "assets/imagens/cientistacientista.png");
-    this.load.image("botao_retangular", "assets/imagens/botao_retangular.png");
+    this.load.image(
+      "homemcabelopreto",
+      "assets/imagens/personagens/homem_cabelo_preto.png"
+    );
+    this.load.image("cientista", "assets/imagens/personagens/cientista.png");
+    this.load.image(
+      "botao_retangular",
+      "assets/imagens/botoes/botao_retangular.png"
+    );
 
     // Sons
-    this.load.audio("digitacao", "assets/sons/digitacao_conv.mp3");
-    this.load.audio("abrirCelular", "assets/sons/abrir_celular.mp3");
+    this.load.audio("digitacao", "assets/sons/efeitos/digitacao_conv.mp3");
+    this.load.audio("abrirCelular", "assets/sons/efeitos/abrir_celular.mp3");
   }
 
   create() {
@@ -148,8 +154,8 @@ class Conversation extends Phaser.Scene {
       .setInteractive()
       .setOrigin(0.5, 1);
 
-    botaoMenu.on("pointerdown", () => this.scene.start("MainMenu"));
-    textoMenu.on("pointerdown", () => this.scene.start("MainMenu"));
+    botaoMenu.on("pointerdown", () => this.scene.start("MenuPrincipal"));
+    textoMenu.on("pointerdown", () => this.scene.start("MenuPrincipal"));
 
     this.atualizarVisibilidadeVoltar();
   }
@@ -207,7 +213,7 @@ class Conversation extends Phaser.Scene {
     } else {
       this.sound.stopAll();
       this.cameras.main.fadeOut(500, 0, 0, 0);
-      this.time.delayedCall(500, () => this.scene.start("Gameinicial"));
+      this.time.delayedCall(500, () => this.scene.start("QuizLgpd"));
     }
   }
 
@@ -220,4 +226,4 @@ class Conversation extends Phaser.Scene {
   }
 }
 
-window.Conversation = Conversation;
+window.DialogoInicial = DialogoInicial;
