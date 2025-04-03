@@ -22,12 +22,8 @@ export default class QuizLgpd extends Phaser.Scene {
       "assets/imagens/botoes/botaovermelho.png"
     );
 
-    // Carregar a fonte personalizada 'rainyhearts' para o texto
-    this.load.bitmapFont(
-      "rainyhearts",
-      "assets/fontes/rainyhearts.png",
-      "assets/fontes/rainyhearts.fnt"
-    );
+    // Carregar a fonte usando WebFont
+    this.load.font("Rainyhearts", "assets/fontes/rainyhearts.ttf");
   }
 
   create() {
@@ -67,7 +63,7 @@ export default class QuizLgpd extends Phaser.Scene {
     // Botão "Avançar", usado para ir para a próxima pergunta
     this.botaoAvancar = this.add
       .text(centerX, centerY + 190, ">>", {
-        font: "40px rainyhearts",
+        font: "40px Rainyhearts", // Usando a fonte TrueType
         fill: "#FFFFFF",
         align: "center",
       })
@@ -79,7 +75,7 @@ export default class QuizLgpd extends Phaser.Scene {
     // Texto de "Game Concluído", que será mostrado quando o jogo terminar
     this.gameConcluido = this.add
       .text(centerX, centerY, "Game concluído!", {
-        font: "40px rainyhearts",
+        font: "40px Rainyhearts", // Usando a fonte TrueType
         fill: "#FFFFFF",
         fontWeight: "bold",
       })
@@ -89,7 +85,7 @@ export default class QuizLgpd extends Phaser.Scene {
     // Texto das perguntas
     this.perguntaTexto = this.add
       .text(centerX - 30, 290, "", {
-        fontSize: "15px",
+        font: "15px Rainyhearts", // Usando a fonte TrueType
         fill: "#000",
         wordWrap: { width: 250 },
         align: "center",
@@ -99,7 +95,7 @@ export default class QuizLgpd extends Phaser.Scene {
     // Texto adicional sobre dados sensíveis
     this.mensagemAdicional = this.add
       .text(centerX, centerY + 60, "", {
-        font: "31px rainyhearts", // Usando a fonte rainyhearts
+        font: "31px Rainyhearts", // Usando a fonte TrueType
         fill: "#FFFFFF",
         fontWeight: "bold",
         wordWrap: { width: 500 },
@@ -237,4 +233,3 @@ export default class QuizLgpd extends Phaser.Scene {
     this.mostrarPergunta(); // Mostra a próxima pergunta
   }
 }
-

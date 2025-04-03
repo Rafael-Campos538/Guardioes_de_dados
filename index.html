@@ -2,41 +2,43 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LGPD Game</title>
-
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>DPO Hero - Jogo sobre LGPD</title>
     <style>
-      @font-face {
-        font-family: "rainyhearts";
-        src: url("assets/fontes/rainyhearts.ttf") format("truetype");
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
       html,
       body {
+        margin: 0;
+        padding: 0;
         width: 100%;
         height: 100%;
         overflow: hidden;
-        background-color: black;
-        font-family: "rainyhearts", sans-serif;
-        text-rendering: optimizeLegibility;
+        background-color: #000;
+      }
+
+      #game-container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       canvas {
         display: block;
+        width: 100%;
+        height: 100%;
+        image-rendering: pixelated; /* Para melhorar a qualidade de pixel art */
       }
     </style>
   </head>
   <body>
-    <!-- Biblioteca Phaser -->
+    <div id="game-container"></div>
     <script src="src/phaser.js"></script>
-
-    <!-- Main game script with module type -->
     <script type="module" src="src/index.js"></script>
   </body>
 </html>

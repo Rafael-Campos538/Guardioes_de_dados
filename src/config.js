@@ -15,6 +15,7 @@ const config = {
   type: Phaser.AUTO,
   width: window.innerWidth,
   height: window.innerHeight,
+  backgroundColor: "#000000",
   scene: [
     MainMenu,
     SelecaoPersonagem,
@@ -29,10 +30,11 @@ const config = {
   ],
   scale: {
     mode: Phaser.Scale.RESIZE,
+    width: "100%",
+    height: "100%",
     autoCenter: Phaser.Scale.CENTER_BOTH,
-    min: { width: 320, height: 240 },
-    max: { width: window.innerWidth, height: window.innerHeight },
   },
+  autoRound: false,
 };
 
 export default config;
