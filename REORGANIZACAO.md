@@ -356,7 +356,7 @@ Essa reorganização traz vários benefícios:
 - **Código mais organizado**: Cada arquivo tem seu lugar específico e lógico
 - **Padrões consistentes**: Todos saberão onde colocar novos arquivos
 - **Facilidade de encontrar arquivos**: A estrutura de diretórios é intuitiva
-- **Código mais profissional**: Seguimos padrões reconhecidos na indústria
+- **Código mais profissional**: Seguimos os padrões corretos, antes não estava
 
 Não precisamos modificar o conteúdo dos arquivos, apenas reorganizei tudo para facilitar nosso trabalho. Se tiverem dúvidas sobre a nova estrutura, me perguntem!
 
