@@ -2,11 +2,11 @@
 
 Pessoal,
 
-Realizei uma reorganização completa da estrutura de arquivos do nosso projeto. Este documento mostra em detalhes como era antes e como ficou depois, para que todos possam entender as mudanças.
+Fiz uma refatoração e reorganização o completa da estrutura de arquivos do nosso projeto. Este documento mostra em detalhes como era antes e como ficou depois, para que todos possam entender as mudanças.
 
 ## Convenções de Nomenclatura Implementadas
 
-Estabeleci os seguintes padrões de nomenclatura que devemos seguir rigorosamente daqui para frente:
+Estabeleci os seguintes padrões que devemos seguir rigorosamente daqui para frente para nomear arquivos e/ou pastas:
 
 ### 1. PascalCase
 
@@ -351,7 +351,7 @@ Ao adicionar novos arquivos ao projeto, siga rigorosamente estas diretrizes:
 
 ## Por Que Fiz Essa Mudança
 
-Essa reorganização traz vários benefícios para nossa equipe:
+Essa reorganização traz vários benefícios:
 
 - **Código mais organizado**: Cada arquivo tem seu lugar específico e lógico
 - **Padrões consistentes**: Todos saberão onde colocar novos arquivos
