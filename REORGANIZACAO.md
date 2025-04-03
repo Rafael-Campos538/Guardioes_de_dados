@@ -2,7 +2,7 @@
 
 Pessoal,
 
-Fiz uma refatoração e reorganização o completa da estrutura de arquivos do nosso projeto. Este documento mostra em detalhes como era antes e como ficou depois, para que todos possam entender as mudanças.
+Fiz uma refatoração e reorganização completa da estrutura de arquivos do nosso projeto. Este documento mostra em detalhes como era antes e como ficou depois, para que todos possam entender as mudanças.
 
 ## Convenções de Nomenclatura Implementadas
 
