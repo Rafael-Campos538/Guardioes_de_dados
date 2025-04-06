@@ -27,13 +27,14 @@ export default class MapaInicial extends Phaser.Scene {
     // Carregando o fundo correto
     this.load.image("fundo_mapa", "assets/imagens/cenarios/fundocenaini.png");
 
-    // Carregando o spritesheet corretamente
+    // Carregando o spritesheet do personagem selecionado
+    const personagemSelecionado = this.registry.get("personagemSelecionado");
     this.load.spritesheet(
-      "menina_sprite",
-      "assets/personagens/spritesheets/menina1.png",
+      "personagem_sprite",
+      `assets/personagens/spritesheets/${personagemSelecionado}.png`,
       {
-        frameWidth: 64, // Cada frame tem 64 pixels de largura
-        frameHeight: 64, // Cada frame tem 64 pixels de altura
+        frameWidth: 64,
+        frameHeight: 64,
       }
     );
 
@@ -58,11 +59,11 @@ export default class MapaInicial extends Phaser.Scene {
       .setOrigin(0.5)
       .setDisplaySize(width, height);
 
-    // Adiciona o jogador em escala apropriada (muito menor)
+    // Adiciona o jogador com o spritesheet selecionado
     this.player = this.add
-      .sprite(width / 2, height / 2, "menina_sprite")
+      .sprite(width / 2, height / 2, "personagem_sprite")
       .setOrigin(0.5)
-      .setScale(0.6); // Escala reduzida significativamente
+      .setScale(1.4);
 
     // Cria as animações para o jogador
     this.createAnimations();
@@ -113,7 +114,7 @@ export default class MapaInicial extends Phaser.Scene {
     // Animação para baixo (frames 0-6)
     this.anims.create({
       key: "walk-down",
-      frames: this.anims.generateFrameNumbers("menina_sprite", {
+      frames: this.anims.generateFrameNumbers("personagem_sprite", {
         start: 0,
         end: 6,
       }),
@@ -124,7 +125,7 @@ export default class MapaInicial extends Phaser.Scene {
     // Animação para cima (frames 7-13)
     this.anims.create({
       key: "walk-up",
-      frames: this.anims.generateFrameNumbers("menina_sprite", {
+      frames: this.anims.generateFrameNumbers("personagem_sprite", {
         start: 7,
         end: 13,
       }),
@@ -135,7 +136,7 @@ export default class MapaInicial extends Phaser.Scene {
     // Animação para lado (frames 14-20)
     this.anims.create({
       key: "walk-side",
-      frames: this.anims.generateFrameNumbers("menina_sprite", {
+      frames: this.anims.generateFrameNumbers("personagem_sprite", {
         start: 14,
         end: 20,
       }),
@@ -154,10 +155,10 @@ export default class MapaInicial extends Phaser.Scene {
       repeat: -1,
     });
 
-    // Animações de idle (parado)
+    // Animação de idle (parado)
     this.anims.create({
       key: "idle",
-      frames: [{ key: "menina_sprite", frame: 0 }],
+      frames: [{ key: "personagem_sprite", frame: 0 }],
       frameRate: 10,
     });
   }

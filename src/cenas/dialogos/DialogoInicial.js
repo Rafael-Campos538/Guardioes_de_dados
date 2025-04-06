@@ -1,5 +1,3 @@
-// ./src/cenas/dialogos/DialogoInicial.js
-
 export default class DialogoInicial extends Phaser.Scene {
   constructor() {
     super({ key: "DialogoInicial" });
@@ -8,19 +6,16 @@ export default class DialogoInicial extends Phaser.Scene {
   preload() {
     this.load.font("Rainyhearts", "assets/fontes/rainyhearts.ttf");
     this.load.image("caixa_dialogo", "assets/imagens/ui/caixadialogo.png");
-    this.load.image(
-      "fundoconversation",
-      "assets/imagens/cenarios/fundoconversation.png"
-    );
-    this.load.image(
-      "homemcabelopreto",
-      "assets/personagens/estaticos/homem_cabelo_preto.png"
-    );
+    this.load.image("fundoconversation", "assets/imagens/cenarios/fundoconversation.png");
+
+    // Recupera o personagem selecionado na cena anterior
+    this.personagemSelecionado = this.registry.get("personagemSelecionado");
+
+    // Carrega o personagem selecionado
+    this.load.image(this.personagemSelecionado, `assets/personagens/estaticos/${this.personagemSelecionado}.png`);
+
     this.load.image("cientista", "assets/personagens/estaticos/cientista.png");
-    this.load.image(
-      "botao_retangular",
-      "assets/imagens/botoes/botao_retangular.png"
-    );
+    this.load.image("botao_retangular", "assets/imagens/botoes/botao_retangular.png");
 
     // Sons
     this.load.audio("digitacao", "assets/sons/efeitos/digitacao_conv.mp3");
@@ -52,7 +47,7 @@ export default class DialogoInicial extends Phaser.Scene {
       {
         personagem: "Agente H.",
         texto: "É uma honra servir para proteger a privacidade!",
-        img: "homemcabelopreto",
+        img: this.personagemSelecionado,
       },
       {
         personagem: "Agente P.",
@@ -68,28 +63,21 @@ export default class DialogoInicial extends Phaser.Scene {
 
     this.indice = 0;
 
-    // Personagens Menores
     this.personagemEsquerda = this.add
-      .image(
-        centerX - largura * 0.5,
-        centerY + altura * 0.05,
-        "homemcabelopreto"
-      )
+      .image(centerX - largura * 0.35, centerY + altura * 0.2, this.personagemSelecionado)
       .setOrigin(0.5)
-      .setScale(largura * 0.0012);
+      .setScale(largura * 0.001);
 
     this.personagemDireita = this.add
       .image(centerX + largura * 0.3, centerY + altura * 0.02, "cientista")
       .setOrigin(0.5)
       .setScale(largura * 0.0009);
 
-    // Caixa de Diálogo Menor
     const caixaDialogo = this.add
       .image(centerX, centerY + altura * 0.35, "caixa_dialogo")
       .setOrigin(0.5)
       .setDisplaySize(largura * 0.5, altura * 0.18);
 
-    // Texto menor
     this.personagemTexto = this.add
       .text(centerX - largura * 0.23, centerY + altura * 0.28, "", {
         fontSize: Math.min(largura, altura) * 0.05,
@@ -109,7 +97,6 @@ export default class DialogoInicial extends Phaser.Scene {
 
     this.atualizarTexto();
 
-    // Botão Voltar
     this.botaoVoltar = this.add
       .text(centerX - largura * 0.15, centerY + altura * 0.4, "VOLTAR", {
         fontSize: Math.min(largura, altura) * 0.025,
@@ -123,7 +110,6 @@ export default class DialogoInicial extends Phaser.Scene {
         this.dialogoAnterior();
       });
 
-    // Botão Continuar
     let botaoContinuar = this.add
       .text(centerX + largura * 0.08, centerY + altura * 0.4, "CONTINUAR", {
         fontSize: Math.min(largura, altura) * 0.025,
@@ -137,7 +123,6 @@ export default class DialogoInicial extends Phaser.Scene {
         this.proximoDialogo();
       });
 
-    // Botão Menu
     let botaoMenu = this.add
       .image(largura * 0.05, altura * 0.05, "botao_retangular")
       .setInteractive()
@@ -169,7 +154,7 @@ export default class DialogoInicial extends Phaser.Scene {
 
     this.aplicarEfeitoDigitar(fala.texto);
 
-    this.personagemEsquerda.setVisible(fala.img === "homemcabelopreto");
+    this.personagemEsquerda.setVisible(fala.img === this.personagemSelecionado);
     this.personagemDireita.setVisible(fala.img === "cientista");
   }
 
@@ -225,4 +210,3 @@ export default class DialogoInicial extends Phaser.Scene {
     this.atualizarVisibilidadeVoltar();
   }
 }
-
