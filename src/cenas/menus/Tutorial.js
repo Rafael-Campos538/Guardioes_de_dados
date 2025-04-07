@@ -21,8 +21,8 @@ export default class Tutorial extends Phaser.Scene {
 
         // Título melhor posicionado
         this.titulo = this.add
-        .text(largura * 0.5, altura * 0.25, "Tutorial", {
-          fontSize: Math.min(largura, altura) * 0.07,
+        .text(largura * 0.5, altura * 0.2, "Tutorial", {
+          fontSize: Math.min(largura, altura) * 0.05,
           fill: "#000080",
           fontFamily: "guardioes_dados",
           align: "center",

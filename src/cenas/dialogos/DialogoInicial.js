@@ -6,16 +6,25 @@ export default class DialogoInicial extends Phaser.Scene {
   preload() {
     this.load.font("Rainyhearts", "assets/fontes/rainyhearts.ttf");
     this.load.image("caixa_dialogo", "assets/imagens/ui/caixadialogo.png");
-    this.load.image("fundoconversation", "assets/imagens/cenarios/fundoconversation.png");
+    this.load.image(
+      "fundoconversation",
+      "assets/imagens/cenarios/fundoconversation.png"
+    );
 
     // Recupera o personagem selecionado na cena anterior
     this.personagemSelecionado = this.registry.get("personagemSelecionado");
 
     // Carrega o personagem selecionado
-    this.load.image(this.personagemSelecionado, `assets/personagens/estaticos/${this.personagemSelecionado}.png`);
+    this.load.image(
+      this.personagemSelecionado,
+      `assets/personagens/estaticos/${this.personagemSelecionado}.png`
+    );
 
-    this.load.image("cientista", "assets/personagens/estaticos/cientista.png");
-    this.load.image("botao_retangular", "assets/imagens/botoes/botao_retangular.png");
+    this.load.image("cientista", "assets/personagens/estaticos/agente_p.png");
+    this.load.image(
+      "botao_retangular",
+      "assets/imagens/botoes/botao_retangular.png"
+    );
 
     // Sons
     this.load.audio("digitacao", "assets/sons/efeitos/digitacao_conv.mp3");
@@ -64,14 +73,18 @@ export default class DialogoInicial extends Phaser.Scene {
     this.indice = 0;
 
     this.personagemEsquerda = this.add
-      .image(centerX - largura * 0.35, centerY + altura * 0.2, this.personagemSelecionado)
+      .image(
+        centerX - largura * 0.26,
+        centerY + altura * 0.26,
+        this.personagemSelecionado
+      )
       .setOrigin(0.5)
-      .setScale(largura * 0.001);
+      .setScale(largura * 0.0017);
 
     this.personagemDireita = this.add
       .image(centerX + largura * 0.3, centerY + altura * 0.02, "cientista")
       .setOrigin(0.5)
-      .setScale(largura * 0.0009);
+      .setScale(largura * 0.0025);
 
     const caixaDialogo = this.add
       .image(centerX, centerY + altura * 0.35, "caixa_dialogo")
