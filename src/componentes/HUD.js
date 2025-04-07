@@ -358,6 +358,7 @@ export default class HUD {
     this.container.add(this.particulas.getChildren());
   }
 
+  // AO escudo muda de cor de acordo com o nível de segurança
   desenharEscudo() {
     const largura = this.scene.cameras.main.width;
     const altura = this.scene.cameras.main.height;
