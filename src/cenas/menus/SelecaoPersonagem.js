@@ -6,6 +6,9 @@ export default class SelecaoPersonagem extends Phaser.Scene {
   }
 
   preload() {
+    this.load.font("Rainyhearts", "assets/fontes/rainyhearts.ttf");
+    this.load.image("titulo", "assets/imagens/ui/tutorial_titulo.png");
+    this.load.image("botao_retangular", "assets/imagens/botoes/botao_retangular.png");
     this.load.image("menina1", "assets/personagens/estaticos/menina1.png");
     this.load.image("menino2", "assets/personagens/estaticos/menino2.png"); // provavelmente está duplicado
     this.load.image("menino3", "assets/personagens/estaticos/menino3.png");
@@ -46,6 +49,41 @@ export default class SelecaoPersonagem extends Phaser.Scene {
     this.confirmar = this.add.image(larguraTela / 2, 700, "confirmar").setInteractive();
     this.confirmar.setScale(0.2);
     this.confirmar.on("pointerdown", () => this.confirmSelection());
+
+
+    // Título melhor posicionado
+    this.titulo = this.add
+    .text(largura * 0.5, altura * 0.25, "Configurações", {
+    fontSize: Math.min(largura, altura) * 0.07,
+    fill: "#000080",
+    fontFamily: "guardioes_dados",
+    align: "center",
+    stroke: "#ADD8E6",
+    strokeThickness: 6,
+    })
+    .setOrigin(0.5);
+
+
+    let botaoMenu = this.add
+    .image(largura * 0.05, altura * 0.05, "botao_retangular")
+    .setInteractive()
+    .setOrigin(0.5)
+    .setScale(largura * 0.00025);
+
+    let textoMenu = this.add
+    .text(largura * 0.05, altura * 0.062, "MENU", {
+    fontSize: Math.min(largura, altura) * 0.03,
+    fill: "#FFFFFF",
+    fontFamily: "Rainyhearts",
+    fontStyle: "bold",
+    })
+    .setInteractive()
+    .setOrigin(0.5, 1);
+
+    botaoMenu.on("pointerdown", () => this.scene.start("MenuPrincipal"));
+    textoMenu.on("pointerdown", () => this.scene.start("MenuPrincipal"));
+
+    this.atualizarVisibilidadeVoltar();
   }
 
   update() {

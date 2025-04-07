@@ -2,6 +2,8 @@
 
 import MainMenu from "./cenas/menus/MenuPrincipal.js";
 import SelecaoPersonagem from "./cenas/menus/SelecaoPersonagem.js";
+import Tutorial from "./cenas/menus/Tutorial.js";
+import Configuracoes from "./cenas/menus/Configuracoes.js";
 import DialogoInicial from "./cenas/dialogos/DialogoInicial.js";
 import MapaInicial from "./cenas/mapas/MapaInicial.js";
 import MapaEscola from "./cenas/mapas/MapaEscola.js";
@@ -19,6 +21,8 @@ const config = {
   scene: [
     MainMenu,
     SelecaoPersonagem,
+    Tutorial,
+    Configuracoes,
     DialogoInicial,
     MapaInicial,
     MapaEscola,

@@ -14,11 +14,11 @@ export default class DialogoProfessora extends Phaser.Scene {
     );
     this.load.image(
       "homem_cabelo_preto",
-      "assets/imagens/personagens/homem_cabelo_preto.png"
+      "assets/imagens/personagens/estaticos/homem_cabelo_preto.png"
     );
     this.load.image(
       "professora_base",
-      "assets/imagens/personagens/professora_base.png"
+      "assets/imagens/personagens/estaticos/professora_base.png"
     );
     this.load.image(
       "botao_retangular",

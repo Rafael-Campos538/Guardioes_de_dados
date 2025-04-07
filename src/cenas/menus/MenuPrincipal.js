@@ -58,11 +58,11 @@ export default class MenuPrincipal extends Phaser.Scene {
     this.createButton(largura * 0.5, altura * 0.7, "Jogar", () =>
       this.iniciarJogo()
     );
-    this.createButton(largura * 0.5, altura * 0.8, "Configurações", () =>
-      console.log("Configurações")
+    this.createButton(largura * 0.5, altura * 0.8, "Tutorial", () =>
+      this.iniciarTutorial()
     );
-    this.createButton(largura * 0.5, altura * 0.9, "Acessibilidade", () =>
-      console.log("Acessibilidade")
+    this.createButton(largura * 0.5, altura * 0.9, "Configurações", () =>
+      this.iniciarConfiguracoes()
     );
 
     // Iniciar música de fundo
@@ -133,6 +133,46 @@ export default class MenuPrincipal extends Phaser.Scene {
       ease: "Power2",
       onComplete: () => {
         this.scene.start("SelecaoPersonagem");
+      },
+    });
+  }
+  iniciarTutorial() {
+    // Parar música
+    if (this.musica) {
+      this.musica.stop();
+    }
+
+    // Tocar som de transição
+    this.sound.play("transicao_tela", { volume: 0.6 });
+
+    // Efeito de transição
+    this.tweens.add({
+      targets: this.cameras.main,
+      alpha: 0,
+      duration: 1020,
+      ease: "Power2",
+      onComplete: () => {
+        this.scene.start("Tutorial");
+      },
+    });
+  }
+  iniciarConfiguracoes() {
+    // Parar música
+    if (this.musica) {
+      this.musica.stop();
+    }
+
+    // Tocar som de transição
+    this.sound.play("transicao_tela", { volume: 0.6 });
+
+    // Efeito de transição
+    this.tweens.add({
+      targets: this.cameras.main,
+      alpha: 0,
+      duration: 1020,
+      ease: "Power2",
+      onComplete: () => {
+        this.scene.start("Configuracoes");
       },
     });
   }
