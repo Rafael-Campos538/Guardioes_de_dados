@@ -1,5 +1,7 @@
 // ./src/cenas/mini-games/quiz/QuizLgpd.js
 
+import HUD from "../../../componentes/HUD.js";
+
 export default class QuizLgpd extends Phaser.Scene {
   constructor() {
     super({ key: "QuizLgpd" });
@@ -35,6 +37,13 @@ export default class QuizLgpd extends Phaser.Scene {
       .image(centerX, centerY, "background")
       .setOrigin(0.5)
       .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
+
+    // Criar HUD - AGORA EXPLICITAMENTE CHAMANDO CRIAR() E MOSTRAR()
+    console.log("[QuizLgpd] Criando HUD");
+    this.hud = new HUD(this);
+    this.hud.mostrar(); // Explicitamente chama mostrar
+
+    console.log("[QuizLgpd] HUD criada e mostrada");
 
     // Botões interativos para as respostas, posicionados na tela
     this.botaoVerde = this.add
@@ -166,6 +175,8 @@ export default class QuizLgpd extends Phaser.Scene {
 
         // Quando o fadeOut for concluído, muda para a cena "MapaInicial"
         this.cameras.main.on("camerafadeoutcomplete", () => {
+          // Esconder HUD antes de mudar de cena
+          this.hud.esconder();
           this.scene.start("MapaInicial"); // Atualizado para o novo nome da cena
 
           // Inicia o fadeIn da nova cena
@@ -180,8 +191,10 @@ export default class QuizLgpd extends Phaser.Scene {
     // Verifica se a escolha do usuário é correta ou não
     if (escolhaUsuario === perguntaAtual.respostaCorreta) {
       this.feedbackPositivo.setVisible(true); // Exibe feedback positivo
+      this.hud.alterarPontuacao(10);
     } else {
       this.feedbackNegativo.setVisible(true); // Exibe feedback negativo
+      this.hud.alterarPontuacao(-5);
     }
 
     // Exibe a mensagem adicional sobre dados sensíveis

@@ -1,5 +1,7 @@
 // ./src/cenas/mapas/MapaInicial.js
 
+import HUD from "../../componentes/HUD.js";
+
 export default class MapaInicial extends Phaser.Scene {
   constructor() {
     super({ key: "MapaInicial" });
@@ -58,6 +60,9 @@ export default class MapaInicial extends Phaser.Scene {
       .image(width / 2, height / 2, "fundo_mapa")
       .setOrigin(0.5)
       .setDisplaySize(width, height);
+
+    this.hud = new HUD(this);
+    this.hud.mostrar();
 
     // Adiciona o jogador com o spritesheet selecionado
     this.player = this.add
@@ -207,6 +212,7 @@ export default class MapaInicial extends Phaser.Scene {
       // Transição suave
       this.cameras.main.fadeOut(500, 0, 0, 0);
       this.time.delayedCall(500, () => {
+        this.hud.esconder();
         this.scene.start("MapaEscola");
       });
     }

@@ -1,5 +1,7 @@
 // ./src/cenas/mapas/MapaEscola.js
 
+import HUD from "../../componentes/HUD.js";
+
 export default class MapaEscola extends Phaser.Scene {
   constructor() {
     super({ key: "MapaEscola" });
@@ -8,7 +10,10 @@ export default class MapaEscola extends Phaser.Scene {
 
   preload() {
     // Carrega o cenário da escola
-    this.load.image("fundo_escola", "assets/imagens/cenarios/fundoesolaini.png");
+    this.load.image(
+      "fundo_escola",
+      "assets/imagens/cenarios/fundoesolaini.png"
+    );
 
     // Carrega o spritesheet do personagem selecionado
     const personagemSelecionado = this.registry.get("personagemSelecionado");
@@ -31,6 +36,9 @@ export default class MapaEscola extends Phaser.Scene {
       .image(width / 2, height / 2, "fundo_escola")
       .setOrigin(0.5)
       .setDisplaySize(width, height);
+
+    this.hud = new HUD(this);
+    this.hud.mostrar();
 
     // Adiciona o jogador com o spritesheet selecionado
     this.player = this.add
@@ -156,7 +164,9 @@ export default class MapaEscola extends Phaser.Scene {
 
     if (hitCube) {
       this.cameras.main.fadeOut(500, 0, 0, 0);
+
       this.time.delayedCall(500, () => {
+        this.hud.esconder()
         this.scene.start("TelaIntroducao");
       });
     }
