@@ -18,7 +18,8 @@ export default class MenuPrincipal extends Phaser.Scene {
       "assets/imagens/botoes/botao_retangular.png"
     );
     this.load.image("titulo", "assets/imagens/ui/menu_principal_titulo.png");
-
+    
+    this.load.image("logo", "assets/imagens/ui/logo.png");
     // Carregar fontes
     this.load.font("Rainyhearts", "assets/fontes/rainyhearts.ttf");
     this.load.font("guardioes_dados", "assets/fontes/vhs-gothic.ttf");
@@ -42,7 +43,7 @@ export default class MenuPrincipal extends Phaser.Scene {
       .setOrigin(0.5)
       .setDisplaySize(largura, altura);
 
-    // Título melhor posicionado
+    /* //Título melhor posicionado
     this.titulo = this.add
       .text(largura * 0.5, altura * 0.25, "Guardiões de Dados", {
         fontSize: Math.min(largura, altura) * 0.07,
@@ -52,7 +53,8 @@ export default class MenuPrincipal extends Phaser.Scene {
         stroke: "#ADD8E6",
         strokeThickness: 6,
       })
-      .setOrigin(0.5);
+      .setOrigin(0.5); */
+    this.add.image(largura * 0.5, altura * 0.25, "logo").setScale(0.3);
 
     // Configurar botões com posições relativas
     this.createButton(largura * 0.5, altura * 0.7, "Jogar", () =>
