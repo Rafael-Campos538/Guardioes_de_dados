@@ -54,7 +54,7 @@ export default class MenuPrincipal extends Phaser.Scene {
         strokeThickness: 6,
       })
       .setOrigin(0.5); */
-    this.add.image(largura * 0.5, altura * 0.25, "logo").setScale(0.3);
+    this.add.image(largura * 0.5, altura * 0.3, "logo").setScale(0.5);
 
     // Configurar botões com posições relativas
     this.createButton(largura * 0.5, altura * 0.7, "Jogar", () =>

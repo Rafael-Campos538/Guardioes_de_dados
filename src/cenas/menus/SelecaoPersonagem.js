@@ -38,7 +38,7 @@ export default class SelecaoPersonagem extends Phaser.Scene {
 
     this.characterSprites = this.personagens.map((key, index) => {
       const x = xInicial + index * espacamento;
-      let sprite = this.add.image(x, 400, key).setInteractive();
+      let sprite = this.add.image(x, altura * 0.5, key).setInteractive();
       sprite.setScale(escala);
       sprite.on("pointerdown", () => this.selectCharacter(index));
       return sprite;
@@ -46,7 +46,7 @@ export default class SelecaoPersonagem extends Phaser.Scene {
 
     this.selector = this.add.rectangle(
       xInicial + this.selectedIndex * espacamento,
-      410,
+      altura * 0.5,
       120,
       240,
       0xffffff,
