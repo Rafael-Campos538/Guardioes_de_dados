@@ -55,7 +55,7 @@ export default class SelecaoPersonagem extends Phaser.Scene {
     this.selector.setStrokeStyle(2, 0xffd700);
 
     this.confirmar = this.add
-      .image(largura / 2, 700, "confirmar")
+      .image(largura / 2, altura * 0.8, "confirmar")
       .setInteractive();
     this.confirmar.setScale(0.2);
     this.confirmar.on("pointerdown", () => this.confirmSelection());
