@@ -74,7 +74,7 @@ export default class DialogoInicial extends Phaser.Scene {
 
     this.personagemEsquerda = this.add
       .image(
-        centerX - largura * 0.26,
+        centerX - largura * 0.25,
         centerY + altura * 0.26,
         this.personagemSelecionado
       )
@@ -101,7 +101,7 @@ export default class DialogoInicial extends Phaser.Scene {
 
     this.textoAtual = this.add
       .text(centerX - largura * 0.23, centerY + altura * 0.32, "", {
-        fontSize: Math.min(largura, altura) * 0.024,
+        fontSize: Math.min(largura, altura) * 0.038,
         fill: "#FFFFFF",
         fontFamily: "Rainyhearts",
         wordWrap: { width: largura * 0.4, useAdvancedWrap: true },
