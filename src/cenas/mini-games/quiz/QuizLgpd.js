@@ -47,33 +47,33 @@ export default class QuizLgpd extends Phaser.Scene {
 
     // Botões interativos para as respostas, posicionados na tela
     this.botaoVerde = this.add
-      .image(centerX - 250, centerY + 240, "botao_verde")
-      .setScale(0.11)
+      .image(centerX - 190, centerY + 240, "botao_verde")
+      .setScale(0.75)
       .setInteractive()
       .on("pointerdown", () => this.verificarBotao(true)); // Resposta correta
 
     this.botaoVermelho = this.add
       .image(centerX + 200, centerY + 240, "botao_vermelho")
-      .setScale(0.11)
+      .setScale(0.75)
       .setInteractive()
       .on("pointerdown", () => this.verificarBotao(false)); // Resposta incorreta
 
     // Feedback visual para respostas corretas e incorretas
     this.feedbackPositivo = this.add
       .image(centerX, centerY, "feedback_positivo")
-      .setScale(0.7)
+      .setScale(0.5)
       .setVisible(false); // Inicialmente invisível
 
     this.feedbackNegativo = this.add
       .image(centerX, centerY, "feedback_negativo")
-      .setScale(0.7)
+      .setScale(0.5)
       .setVisible(false); // Inicialmente invisível
 
     // Botão "Avançar", usado para ir para a próxima pergunta
     this.botaoAvancar = this.add
-      .text(centerX, centerY + 190, ">>", {
-        font: "40px Rainyhearts", // Usando a fonte TrueType
-        fill: "#FFFFFF",
+      .text(centerX, centerY + 240, "CONTINUAR", {
+        font: "44px Rainyhearts", // Usando a fonte TrueType
+        fill: "#F323FF",
         align: "center",
       })
       .setOrigin(0.5)
@@ -84,7 +84,7 @@ export default class QuizLgpd extends Phaser.Scene {
     // Texto de "Game Concluído", que será mostrado quando o jogo terminar
     this.gameConcluido = this.add
       .text(centerX, centerY, "Game concluído!", {
-        font: "40px Rainyhearts", // Usando a fonte TrueType
+        font: "45px Rainyhearts", // Usando a fonte TrueType
         fill: "#FFFFFF",
         fontWeight: "bold",
       })
@@ -93,19 +93,21 @@ export default class QuizLgpd extends Phaser.Scene {
 
     // Texto das perguntas
     this.perguntaTexto = this.add
-      .text(centerX - 30, 290, "", {
-        font: "15px Rainyhearts", // Usando a fonte TrueType
-        fill: "#000",
-        wordWrap: { width: 250 },
+      .text(centerX + 1, 370, "", {
+        fontFamily: "Rainyhearts",
+        fontSize: "27px", // Continua usando px, por ser o mais estável no Phaser
+        color: "#FFFFFF",
+        wordWrap: { width: 500 },
         align: "center",
+        resolution: 2, // Dobro da resolução para melhorar a qualidade visual
       })
       .setOrigin(0.5);
 
     // Texto adicional sobre dados sensíveis
     this.mensagemAdicional = this.add
-      .text(centerX, centerY + 60, "", {
-        font: "31px Rainyhearts", // Usando a fonte TrueType
-        fill: "#FFFFFF",
+      .text(centerX, centerY + 100, "", {
+        font: "33px Rainyhearts", // Levemente maior
+        fill: "#FFFFFF", // Cor branca
         fontWeight: "bold",
         wordWrap: { width: 500 },
         align: "center",
@@ -132,7 +134,7 @@ export default class QuizLgpd extends Phaser.Scene {
       },
       {
         pergunta:
-          "Ao fazer o cadastro em um site online um jovens de 20 anos preencheu um formulário com as seguintes informações:\n\nNome\nIdade\nCEP\nEndereço\nTelefone\nGênero\nRaça",
+          "Ao fazer o cadastro em um site online um jovem de 20 anos preencheu um formulário com as seguintes informações:\n\nNome\nIdade\nCEP\nEndereço\nTelefone\nGênero\nRaça",
         respostaCorreta: false,
       },
       {

@@ -46,9 +46,9 @@ export default class SelecaoPersonagem extends Phaser.Scene {
 
     this.selector = this.add.rectangle(
       xInicial + this.selectedIndex * espacamento,
-      300,
+      410,
       120,
-      150,
+      240,
       0xffffff,
       0.3
     );
