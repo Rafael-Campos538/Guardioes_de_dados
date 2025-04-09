@@ -68,7 +68,7 @@ export default class JogoCelular extends Phaser.Scene {
         .setScale(Math.min(largura, altura) * 0.0014)
         .setInteractive()
         .on("pointerdown", () => {
-          this.scene.start("InterfaceCelular", { grupo: "grupo2" });
+          this.scene.start("InterfaceCelularDois", { grupo: "grupo2" });
         });
       this.criarAnimacaoPulo(this.seta2);
     }

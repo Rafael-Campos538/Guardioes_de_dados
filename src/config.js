@@ -9,6 +9,7 @@ import MapaInicial from "./cenas/mapas/MapaInicial.js";
 import MapaEscola from "./cenas/mapas/MapaEscola.js";
 import JogoCelular from "./cenas/mini-games/celular/JogoCelular.js";
 import InterfaceCelular from "./cenas/mini-games/celular/InterfaceCelular.js";
+import InterfaceCelularDois from "./cenas/mini-games/celular/InterfaceCelularDois.js";
 import TelaIntroducao from "./cenas/mini-games/celular/TelaIntroducao.js";
 import QuizLgpd from "./cenas/mini-games/quiz/QuizLgpd.js";
 import DialogoProfessora from "./cenas/dialogos/DialogoProfessora.js";
@@ -21,6 +22,7 @@ const config = {
   scene: [
   JogoCelular,
   InterfaceCelular,
+  InterfaceCelularDois,
    
   ],
   scale: {
