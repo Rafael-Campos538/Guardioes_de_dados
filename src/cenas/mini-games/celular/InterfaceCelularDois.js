@@ -10,10 +10,10 @@ export default class InterfaceCelularDois extends Phaser.Scene {
       this.load.image("fundominigame2", "assets/imagens/cenarios/fundominigame2.png");
       this.load.image("celularmensagens", "assets/imagens/celular/celularmensagens.png");
       this.load.image("deletargrupo", "assets/imagens/celular/deletargrupo.png");
-      this.load.image("mensagem_claudia", "assets/imagens/celular/mensagem_claudia.png");
-      this.load.image("mensagem_joao", "assets/imagens/celular/mensagem_joao.png");
-      this.load.image("mensagem_ana", "assets/imagens/celular/mensagem_ana.png");
-      this.load.image("mensagem_pedro", "assets/imagens/celular/mensagem_pedro.png");
+      this.load.image("mensagem_geraldo", "assets/imagens/celular/mensagem_geraldo.png");
+      this.load.image("mensagem_joaao", "assets/imagens/celular/mensagem_joaao.png");
+      this.load.image("mensagem_beatriz", "assets/imagens/celular/mensagem_beatriz.png");
+      this.load.image("mensagem_felipe", "assets/imagens/celular/mensagem_felipe.png");
       this.load.image("excluir_mensagem", "assets/imagens/celular/excluir_mensagem.png");
       this.load.image("feedback_correto", "assets/imagens/feedback/correto.png");
       this.load.image("feedback_incorreto", "assets/imagens/feedback/incorreto.png");
@@ -21,7 +21,7 @@ export default class InterfaceCelularDois extends Phaser.Scene {
     }
   
     init(data) {
-      this.grupoAtual = data.grupo; // Recebe o grupo clicado da cena anterior
+      this.grupoAtual = data.grupo;
     }
   
     create() {
@@ -47,10 +47,10 @@ export default class InterfaceCelularDois extends Phaser.Scene {
         .setOrigin(0.5)
         .setScale(Math.min(largura, altura) * 0.00053);
   
-      this.criarMensagem(centerX, centerY - altura * 0.2, "mensagem_claudia", "eoxisClaud");
-      this.criarMensagem(centerX, centerY - altura * 0.057, "mensagem_joao", "eoxisJoao");
-      this.criarMensagem(centerX, centerY + altura * 0.08, "mensagem_ana", "eoxisAna");
-      this.criarMensagem(centerX, centerY + altura * 0.222, "mensagem_pedro", "eoxisPedro");
+      this.criarMensagem(centerX, centerY - altura * 0.2, "mensagem_geraldo", "eoxisGeraldo");
+      this.criarMensagem(centerX, centerY - altura * 0.057, "mensagem_joaao", "eoxisJoaao");
+      this.criarMensagem(centerX, centerY + altura * 0.08, "mensagem_beatriz", "eoxisBeatriz");
+      this.criarMensagem(centerX, centerY + altura * 0.222, "mensagem_felipe", "eoxisFelipe");
   
       if (this.deletarBotao) this.deletarBotao.destroy();
       this.deletarBotao = this.add
@@ -59,7 +59,7 @@ export default class InterfaceCelularDois extends Phaser.Scene {
         .setScale(Math.min(largura, altura) * 0.00061)
         .setInteractive()
         .on("pointerdown", () => {
-          InterfaceCelularDois.gruposDeletados.add(this.grupoAtual); // Marca grupo como deletado
+          InterfaceCelularDois.gruposDeletados.add(this.grupoAtual);
           this.scene.start("JogoCelular");
         });
     }
@@ -86,7 +86,7 @@ export default class InterfaceCelularDois extends Phaser.Scene {
   
           InterfaceCelularDois.mensagensDeletadas.add(eoxisKey);
   
-          const mensagemCorreta = eoxisKey === "eoxisPedro";
+          const mensagemCorreta = eoxisKey === "eoxisFelipe";
           this.mostrarFeedback(mensagemCorreta);
         });
     }
@@ -99,7 +99,7 @@ export default class InterfaceCelularDois extends Phaser.Scene {
   
       const feedbackKey = isCorreto ? "feedback_correto" : "feedback_incorreto";
       const mensagemTexto = isCorreto
-        ? "Boa! Essa mensagem possuia pedido de CPF, e por serem menores de idade, devem pedir autorização aos pais ou responsáveis."
+        ? "Boa! Essa mensagem pedia o nome completo, isso só deve ser pedido caso realmente necessário."
         : "Ops! Essa não era uma mensagem sensível, então não precisava ser excluída.";
   
       const feedback = this.add

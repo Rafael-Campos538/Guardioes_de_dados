@@ -1,4 +1,5 @@
 import InterfaceCelular from "./InterfaceCelular.js";
+import InterfaceCelularDois from "./InterfaceCelularDois.js"; // <-- Adicionado aqui
 
 export default class JogoCelular extends Phaser.Scene {
   constructor() {
@@ -61,7 +62,7 @@ export default class JogoCelular extends Phaser.Scene {
 
     // SETA 2 - grupo2
     if (this.seta2) this.seta2.destroy();
-    if (!InterfaceCelular.gruposDeletados.has("grupo2")) {
+    if (!InterfaceCelularDois.gruposDeletados.has("grupo2")) {
       this.seta2 = this.add
         .image(centerX + largura * 0.07, centerY - altura * 0.01, "setaentrargrupo")
         .setOrigin(0.5)
