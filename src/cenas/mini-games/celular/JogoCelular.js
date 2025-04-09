@@ -1,5 +1,6 @@
 import InterfaceCelular from "./InterfaceCelular.js";
-import InterfaceCelularDois from "./InterfaceCelularDois.js"; // <-- Adicionado aqui
+import InterfaceCelularDois from "./InterfaceCelularDois.js";
+import InterfaceCelularTres from "./InterfaceCelularTres.js"; // <-- Adicionado aqui
 
 export default class JogoCelular extends Phaser.Scene {
   constructor() {
@@ -76,14 +77,14 @@ export default class JogoCelular extends Phaser.Scene {
 
     // SETA 3 - grupo3
     if (this.seta3) this.seta3.destroy();
-    if (!InterfaceCelular.gruposDeletados.has("grupo3")) {
+    if (!InterfaceCelularTres.gruposDeletados.has("grupo3")) {
       this.seta3 = this.add
         .image(centerX + largura * 0.07, centerY + altura * 0.19, "setaentrargrupo")
         .setOrigin(0.5)
         .setScale(Math.min(largura, altura) * 0.0014)
         .setInteractive()
         .on("pointerdown", () => {
-          this.scene.start("InterfaceCelular", { grupo: "grupo3" });
+          this.scene.start("InterfaceCelularTres", { grupo: "grupo3" });
         });
       this.criarAnimacaoPulo(this.seta3);
     }
