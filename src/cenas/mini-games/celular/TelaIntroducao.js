@@ -70,7 +70,7 @@ export default class TelaIntroducao extends Phaser.Scene {
       .text(
         centerX - 70 + deslocamentoEsquerda,
         centerY + altura * 0.27,
-        "Falar com a",
+        "",
         {
           fontSize: Math.min(largura, altura) * 0.055,
           fill: "#00BFFF",
@@ -83,9 +83,9 @@ export default class TelaIntroducao extends Phaser.Scene {
 
     const textoBotao2 = this.add
       .text(
-        textoBotao1.x + textoBotao1.width + 10,
+        textoBotao1.x + textoBotao1.width + 140,
         centerY + altura * 0.27,
-        "Professora",
+        "CONTINUAR",
         {
           fontSize: Math.min(largura, altura) * 0.055,
           fill: "#FFFF00",
