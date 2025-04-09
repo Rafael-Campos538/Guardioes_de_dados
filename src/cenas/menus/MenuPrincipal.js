@@ -18,7 +18,7 @@ export default class MenuPrincipal extends Phaser.Scene {
       "assets/imagens/botoes/botao_retangular.png"
     );
     this.load.image("titulo", "assets/imagens/ui/menu_principal_titulo.png");
-    
+
     this.load.image("logo", "assets/imagens/ui/logo.png");
     // Carregar fontes
     this.load.font("Rainyhearts", "assets/fontes/rainyhearts.ttf");
@@ -134,7 +134,8 @@ export default class MenuPrincipal extends Phaser.Scene {
       duration: 1020,
       ease: "Power2",
       onComplete: () => {
-        this.scene.start("SelecaoPersonagem");
+        this.scene.start("JogoCelular");
+        //this.scene.start("SelecaoPersonagem");
       },
     });
   }
