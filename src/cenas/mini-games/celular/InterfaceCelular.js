@@ -1,6 +1,7 @@
 // Variável mensagensSensiveisDeletadas ficará true quando o jogador deletar todas as mensagens sensíveis e se ele tentar deletar o grupo sem deletar todas as mensagens, o jogo não irá exibir um toast.
 
 // Para exibir o toast é só usar this.toast.showMessage("Mensagem aqui");
+// É necessário carregar o plugin no preload e criar o toast no create, só copiar as seções comentadas aqui
 var mensagensSensiveisDeletadas = false;
 export default class InterfaceCelular extends Phaser.Scene {
   static mensagensDeletadas = new Set();
@@ -43,6 +44,8 @@ export default class InterfaceCelular extends Phaser.Scene {
       "assets/imagens/feedback/incorreto.png"
     );
     this.load.font("rainyhearts", "assets/fontes/rainyhearts.ttf");
+
+    // Carregar o plugin do RexUI, responsável pelo toast. É só copiar e colar isso dentro do preload() das cenas onde o toast vai ser usado
     this.load.scenePlugin(
       "rexuiplugin",
       "https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js",
@@ -58,6 +61,8 @@ export default class InterfaceCelular extends Phaser.Scene {
   create() {
     this.atualizarCena();
     this.scale.on("resize", this.atualizarCena, this);
+
+    // Aqui cria o toast, é só copiar e colar isso dentro do create() das cenas onde o toast vai ser usado
     this.toast = this.rexUI.add.toast({
       x: this.cameras.main.centerX,
       y: this.cameras.main.centerY,
