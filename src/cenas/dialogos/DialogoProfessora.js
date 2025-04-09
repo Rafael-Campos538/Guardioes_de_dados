@@ -47,24 +47,64 @@ export default class DialogoProfessora extends Phaser.Scene {
       .setOrigin(0.5)
       .setDisplaySize(largura, altura);
 
-    this.dialogos = [
-      {
-        personagem: "Professora.",
-        texto: "Olá, boas vindas a nossa escola. Como posso te ajudar?",
-        img: "professora_base",
-      },
-      {
-        personagem: "Agente P.",
-        texto:
-          "Você é a professora responsável por criar o grupo de mensagens com os seus alunos?",
-        img: "homem_cabelo_preto",
-      },
-      {
-        personagem: "NARRADOR",
-        texto: "AMBOS CONVERSAM E A PROFESSORA É CONSCIENTIZADA",
-        img: "",
-      },
-    ];
+      this.dialogos = [
+        {
+          personagem: "Professora.",
+          texto: "Olá, boas vindas a nossa escola. Como posso te ajudar?",
+          img: "professora_base",
+        },
+        {
+          personagem: "Agente P.",
+          texto:
+            "Você é a professora responsável por criar o grupo de mensagens com os seus alunos?",
+          img: "homem_cabelo_preto",
+        },
+        {
+          personagem: "Professora.",
+          texto: "Sim, sou eu. Aconteceu alguma coisa?",
+          img: "",
+        },
+        {
+          personagem: "Agente P.",
+          texto:
+            "Na verdade sim... Acontece que, de acordo com a LGPD, é proibido criar grupos com dados pessoais de alunos sem autorização.",
+          img: "homem_cabelo_preto",
+        },
+        {
+          personagem: "Professora.",
+          texto: "Mas o grupo era só para passar avisos e tirar dúvidas rápidas!",
+          img: "professora_preocupada",
+        },
+        {
+          personagem: "Agente P.",
+          texto:
+            "Mesmo com boa intenção, quando você cria um grupo com os números dos alunos ou responsáveis, está compartilhando dados pessoais sem o consentimento deles.",
+          img: "homem_cabelo_preto",
+        },
+        {
+          personagem: "Agente P.",
+          texto:
+            "Além disso, mensagens enviadas nesses grupos não são monitoradas oficialmente pela escola, o que pode causar problemas sérios.",
+          img: "homem_cabelo_preto",
+        },
+        {
+          personagem: "Professora.",
+          texto: "Entendo... Então como posso me comunicar com eles de forma segura?",
+          img: "professora_reflexiva",
+        },
+        {
+          personagem: "Agente P.",
+          texto:
+            "O ideal é usar plataformas autorizadas pela escola, que respeitam a privacidade e a segurança dos dados. Assim, todos estão protegidos.",
+          img: "homem_cabelo_preto",
+        },
+        {
+          personagem: "Professora.",
+          texto: "Obrigada pelo aviso. Vou seguir as orientações corretas a partir de agora.",
+          img: "professora_sorrindo",
+        }
+      ];
+      
 
     this.indice = 0;
 
@@ -104,7 +144,7 @@ export default class DialogoProfessora extends Phaser.Scene {
         fontSize: Math.min(largura, altura) * 0.035,
         fill: "#FFFFFF",
         fontFamily: "Rainyhearts",
-        wordWrap: { width: largura * 0.4, useAdvancedWrap: true },
+        wordWrap: { width: largura * 0.46, useAdvancedWrap: true },
       })
       .setOrigin(0, 0);
 

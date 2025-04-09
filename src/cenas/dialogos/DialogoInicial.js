@@ -68,6 +68,21 @@ export default class DialogoInicial extends Phaser.Scene {
         texto: "Nossa missão é garantir a segurança dessas informações.",
         img: "cientista",
       },
+      {
+        personagem: "Agente P.",
+        texto: "Vamos testar seu conhecimento, que tal?",
+        img: "cientista",
+      },
+      {
+        personagem: "Agente P.",
+        texto: "Você deve dizer se as mensagem são aprovadas ou não. Se tiverem dados sensíveis, não aprove.",
+        img: "cientista",
+      },
+      {
+        personagem: "Agente P.",
+        texto: "BOA SORTE!",
+        img: "cientista",
+      },
     ];
 
     this.indice = 0;

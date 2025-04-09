@@ -8,7 +8,6 @@ export default class MapaInicial extends Phaser.Scene {
   }
 
   init() {
-    // Inicialização de variáveis para o pássaro
     this.xi = 1600;
     this.yi = 800;
     this.xf = -100;
@@ -21,15 +20,12 @@ export default class MapaInicial extends Phaser.Scene {
     this.y = this.yi;
     this.ay = (2 * (this.yf - this.yi)) / this.t_total ** 2;
 
-    // Flag para controlar o redimensionamento
     this.isResizing = false;
   }
 
   preload() {
-    // Carregando o fundo correto
     this.load.image("fundo_mapa", "assets/imagens/cenarios/fundocenaini.png");
 
-    // Carregando o spritesheet do personagem selecionado
     const personagemSelecionado = this.registry.get("personagemSelecionado");
     this.load.spritesheet(
       "personagem_sprite",
@@ -48,14 +44,14 @@ export default class MapaInicial extends Phaser.Scene {
         frameHeight: 384,
       }
     );
+
+    this.load.image("icone_exclamacao", "assets/imagens/ui/exclamacao.png");
   }
 
   create() {
-    // Obtém dimensões da tela
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
 
-    // Adiciona o fundo
     this.background = this.add
       .image(width / 2, height / 2, "fundo_mapa")
       .setOrigin(0.5)
@@ -64,16 +60,13 @@ export default class MapaInicial extends Phaser.Scene {
     this.hud = new HUD(this);
     this.hud.mostrar();
 
-    // Adiciona o jogador com o spritesheet selecionado
     this.player = this.add
       .sprite(width / 2, height / 2, "personagem_sprite")
       .setOrigin(0.5)
       .setScale(1.4);
 
-    // Cria as animações para o jogador
     this.createAnimations();
 
-    // Adiciona o cubo vermelho que pisca
     this.cube = this.add.rectangle(width * 0.7, height * 0.5, 40, 40, 0xff0000);
     this.time.addEvent({
       delay: 300,
@@ -81,16 +74,27 @@ export default class MapaInicial extends Phaser.Scene {
       loop: true,
     });
 
-    // Configura o passarinho
+    // Exclamação maior e piscando
+    this.exclamacao = this.add
+      .image(this.cube.x, this.cube.y - 80, "icone_exclamacao") // mais acima
+      .setOrigin(0.5)
+      .setScale(0.15); // maior
+
+    this.time.addEvent({
+      delay: 300,
+      callback: () => {
+        this.exclamacao.setVisible(!this.exclamacao.visible); // piscar
+      },
+      loop: true,
+    });
+
     this.passarinho = this.add
       .sprite(this.xi, this.yi, "passarinho")
       .setScale(0.2);
     this.passarinho.anims.play("fly", true);
 
-    // Configuração de controles
     this.cursors = this.input.keyboard.createCursorKeys();
 
-    // Configuração de eventos de resize
     this.scale.on("resize", this.resize, this);
   }
 
@@ -101,22 +105,23 @@ export default class MapaInicial extends Phaser.Scene {
     const width = gameSize.width;
     const height = gameSize.height;
 
-    // Redimensionar o fundo
     if (this.background) {
       this.background.setPosition(width / 2, height / 2);
       this.background.setDisplaySize(width, height);
     }
 
-    // Reposicionar o cubo se necessário
     if (this.cube) {
       this.cube.setPosition(width * 0.7, height * 0.5);
+    }
+
+    if (this.exclamacao) {
+      this.exclamacao.setPosition(this.cube.x, this.cube.y - 80); // manter altura ajustada
     }
 
     this.isResizing = false;
   }
 
   createAnimations() {
-    // Animação para baixo (frames 0-6)
     this.anims.create({
       key: "walk-down",
       frames: this.anims.generateFrameNumbers("personagem_sprite", {
@@ -127,7 +132,6 @@ export default class MapaInicial extends Phaser.Scene {
       repeat: -1,
     });
 
-    // Animação para cima (frames 7-13)
     this.anims.create({
       key: "walk-up",
       frames: this.anims.generateFrameNumbers("personagem_sprite", {
@@ -138,7 +142,6 @@ export default class MapaInicial extends Phaser.Scene {
       repeat: -1,
     });
 
-    // Animação para lado (frames 14-20)
     this.anims.create({
       key: "walk-side",
       frames: this.anims.generateFrameNumbers("personagem_sprite", {
@@ -149,7 +152,6 @@ export default class MapaInicial extends Phaser.Scene {
       repeat: -1,
     });
 
-    // Animação do passarinho
     this.anims.create({
       key: "fly",
       frames: this.anims.generateFrameNumbers("passarinho", {
@@ -160,7 +162,6 @@ export default class MapaInicial extends Phaser.Scene {
       repeat: -1,
     });
 
-    // Animação de idle (parado)
     this.anims.create({
       key: "idle",
       frames: [{ key: "personagem_sprite", frame: 0 }],
@@ -169,11 +170,9 @@ export default class MapaInicial extends Phaser.Scene {
   }
 
   update(time, delta) {
-    // Velocidade do jogador
     const speed = 4;
     let moving = false;
 
-    // Movimentação
     if (this.cursors.left.isDown) {
       this.player.x -= speed;
       this.player.anims.play("walk-side", true);
@@ -196,12 +195,10 @@ export default class MapaInicial extends Phaser.Scene {
       moving = true;
     }
 
-    // Se não estiver se movendo, mostrar animação idle
     if (!moving) {
       this.player.anims.play("idle", true);
     }
 
-    // Verificar colisão com o cubo
     const hitCube = Phaser.Geom.Rectangle.Contains(
       this.cube.getBounds(),
       this.player.x,
@@ -209,7 +206,6 @@ export default class MapaInicial extends Phaser.Scene {
     );
 
     if (hitCube) {
-      // Transição suave
       this.cameras.main.fadeOut(500, 0, 0, 0);
       this.time.delayedCall(500, () => {
         this.hud.esconder();
@@ -217,16 +213,13 @@ export default class MapaInicial extends Phaser.Scene {
       });
     }
 
-    // Atualiza o passarinho (movimento)
     if (this.passarinho && this.t <= this.t_total) {
-      const dt = delta / 1000; // Converter delta para segundos
+      const dt = delta / 1000;
       this.t += dt;
 
-      // Posição X (MU)
       this.x = this.xi + this.vx * this.t;
       this.passarinho.x = this.x;
 
-      // Posição Y (MUV)
       this.vy = this.ay * this.t;
       this.y = this.yi + (this.vy * this.t) / 2;
       this.passarinho.y = this.y;
