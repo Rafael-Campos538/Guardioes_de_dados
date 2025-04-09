@@ -8,6 +8,8 @@ import MapaEscola from "./cenas/mapas/MapaEscola.js";
 import MapaTeste from "./cenas/mapas/MapaTeste.js"; // Nova importação
 import JogoCelular from "./cenas/mini-games/celular/JogoCelular.js";
 import InterfaceCelular from "./cenas/mini-games/celular/InterfaceCelular.js";
+import InterfaceCelularDois from "./cenas/mini-games/celular/InterfaceCelularDois.js";
+import InterfaceCelularTres from "./cenas/mini-games/celular/InterfaceCelularTres.js"; // <-- Adicionado aqui
 import TelaIntroducao from "./cenas/mini-games/celular/TelaIntroducao.js";
 import QuizLgpd from "./cenas/mini-games/quiz/QuizLgpd.js";
 import DialogoProfessora from "./cenas/dialogos/DialogoProfessora.js";
@@ -27,6 +29,8 @@ const config = {
     MapaTeste,
     JogoCelular,
     InterfaceCelular,
+    InterfaceCelularDois,
+    InterfaceCelularTres,
     TelaIntroducao,
     QuizLgpd,
     DialogoProfessora,
