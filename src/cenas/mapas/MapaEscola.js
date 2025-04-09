@@ -25,6 +25,9 @@ export default class MapaEscola extends Phaser.Scene {
         frameHeight: 64,
       }
     );
+
+    // Carrega o ícone de exclamação
+    this.load.image("exclamacao", "assets/imagens/ui/exclamacao.png");
   }
 
   create() {
@@ -57,6 +60,20 @@ export default class MapaEscola extends Phaser.Scene {
       loop: true,
     });
 
+    // Adiciona o ícone de exclamação acima do cubo
+    this.exclamacao = this.add
+      .image(this.cube.x, this.cube.y - 60, "exclamacao")
+      .setScale(0.15);
+
+    // Animação de piscar o ícone de exclamação
+    this.time.addEvent({
+      delay: 500,
+      callback: () => {
+        this.exclamacao.setVisible(!this.exclamacao.visible);
+      },
+      loop: true,
+    });
+
     // Configuração de controles
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -78,6 +95,10 @@ export default class MapaEscola extends Phaser.Scene {
 
     if (this.cube) {
       this.cube.setPosition(width * 0.7, height * 0.5);
+    }
+
+    if (this.exclamacao) {
+      this.exclamacao.setPosition(this.cube.x, this.cube.y - 40);
     }
 
     this.isResizing = false;
@@ -166,7 +187,7 @@ export default class MapaEscola extends Phaser.Scene {
       this.cameras.main.fadeOut(500, 0, 0, 0);
 
       this.time.delayedCall(500, () => {
-        this.hud.esconder()
+        this.hud.esconder();
         this.scene.start("TelaIntroducao");
       });
     }

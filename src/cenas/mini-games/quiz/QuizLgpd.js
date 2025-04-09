@@ -93,7 +93,7 @@ export default class QuizLgpd extends Phaser.Scene {
 
     // Texto das perguntas
     this.perguntaTexto = this.add
-      .text(centerX + 1, 370, "", {
+      .text(centerX + 1, 420, "", {
         fontFamily: "Rainyhearts",
         fontSize: "27px", // Continua usando px, por ser o mais estável no Phaser
         color: "#FFFFFF",
@@ -202,7 +202,7 @@ export default class QuizLgpd extends Phaser.Scene {
     // Exibe a mensagem adicional sobre dados sensíveis
     if (this.indice === 0) {
       this.mensagemAdicional.setText(
-        "Nenhum desses dados é sensível, mas o CPF deve ser coletado apenas se for realmente necessário."
+        "Nenhum desses dados é sensível, mas o endereço deve ser coletado apenas se for realmente necessário."
       );
       this.mensagemAdicional.setVisible(true);
     }
