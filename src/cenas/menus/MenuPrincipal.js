@@ -155,7 +155,8 @@ export default class MenuPrincipal extends Phaser.Scene {
       duration: 1020,
       ease: "Power2",
       onComplete: () => {
-        this.scene.start("Tutorial");
+        this.scene.start("MapaTeste");
+        //this.scene.start("Tutorial");
       },
     });
   }
