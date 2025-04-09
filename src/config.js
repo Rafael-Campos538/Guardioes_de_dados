@@ -11,6 +11,7 @@ import InterfaceCelular from "./cenas/mini-games/celular/InterfaceCelular.js";
 import TelaIntroducao from "./cenas/mini-games/celular/TelaIntroducao.js";
 import QuizLgpd from "./cenas/mini-games/quiz/QuizLgpd.js";
 import DialogoProfessora from "./cenas/dialogos/DialogoProfessora.js";
+import MapaPrincipalTeste from "./cenas/mapas/MapaPrincipalTeste.js"; // Nova importação
 
 const config = {
   type: Phaser.AUTO,
@@ -23,12 +24,13 @@ const config = {
     DialogoInicial,
     MapaInicial,
     MapaEscola,
-    MapaTeste, 
+    MapaTeste,
     JogoCelular,
     InterfaceCelular,
     TelaIntroducao,
     QuizLgpd,
     DialogoProfessora,
+    MapaPrincipalTeste,
   ],
   physics: {
     default: "arcade",

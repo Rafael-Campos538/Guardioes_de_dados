@@ -134,8 +134,7 @@ export default class MenuPrincipal extends Phaser.Scene {
       duration: 1020,
       ease: "Power2",
       onComplete: () => {
-        this.scene.start("JogoCelular");
-        //this.scene.start("SelecaoPersonagem");
+        this.scene.start("SelecaoPersonagem");
       },
     });
   }
@@ -176,7 +175,8 @@ export default class MenuPrincipal extends Phaser.Scene {
       duration: 1020,
       ease: "Power2",
       onComplete: () => {
-        this.scene.start("Configuracoes");
+        this.scene.start("MapaPrincipalTeste");
+        //this.scene.start("Configuracoes");
       },
     });
   }
