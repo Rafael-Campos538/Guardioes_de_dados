@@ -19,8 +19,8 @@ const config = {
   height: window.innerHeight,
   backgroundColor: "#000000",
   scene: [
-  InterfaceCelular,
   JogoCelular,
+  InterfaceCelular,
    
   ],
   scale: {

@@ -1,4 +1,4 @@
-// ./src/cenas/mini-games/celular/JogoCelular.js
+import InterfaceCelular from "./InterfaceCelular.js";
 
 export default class JogoCelular extends Phaser.Scene {
   constructor() {
@@ -6,46 +6,24 @@ export default class JogoCelular extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image(
-      "fundominigame2",
-      "assets/imagens/cenarios/fundominigame2.png"
-    );
-    this.load.image(
-      "celulargrupos",
-      "assets/imagens/celular/celulargrupos.png"
-    );
-    this.load.image(
-      "setaentrargrupo",
-      "assets/imagens/celular/setaentrargrupo.png"
-    );
+    this.load.image("fundominigame2", "assets/imagens/cenarios/fundominigame2.png");
+    this.load.image("celulargrupos", "assets/imagens/celular/celulargrupos.png");
+    this.load.image("setaentrargrupo", "assets/imagens/celular/setaentrargrupo.png");
   }
 
   create() {
-    this.atualizarCena(); // Configura a cena
-    this.scale.on("resize", this.atualizarCena, this); // Adapta elementos ao redimensionar tela
+    this.atualizarCena();
+    this.scale.on("resize", this.atualizarCena, this);
+  }
 
-    // Tornando as setas interativas
-    this.seta.setInteractive(); // Tornar a primeira seta clicável
-    this.seta.on("pointerdown", () => {
-      this.scene.start("InterfaceCelular"); // Atualizado para o novo nome da cena
-    });
-
-    // Interatividade para a segunda seta
-    this.seta2.setInteractive(); // Tornar a segunda seta clicável
-    this.seta2.on("pointerdown", () => {
-      console.log("Segunda seta clicada!"); // Você pode adicionar ações aqui
-    });
-
-    // Interatividade para a terceira seta
-    this.seta3.setInteractive(); // Tornar a terceira seta clicável
-    this.seta3.on("pointerdown", () => {
-      console.log("Terceira seta clicada!"); // Você pode adicionar ações aqui
-    });
-
-    // Interatividade para a quarta seta
-    this.seta4.setInteractive(); // Tornar a quarta seta clicável
-    this.seta4.on("pointerdown", () => {
-      console.log("Quarta seta clicada!"); // Você pode adicionar ações aqui
+  criarAnimacaoPulo(seta) {
+    this.tweens.add({
+      targets: seta,
+      y: seta.y - 10,
+      duration: 500,
+      yoyo: true,
+      repeat: -1,
+      ease: "Sine.easeInOut",
     });
   }
 
@@ -55,61 +33,58 @@ export default class JogoCelular extends Phaser.Scene {
     const centerX = largura / 2;
     const centerY = altura / 2;
 
-    // Fundo responsivo
     if (this.fundo) this.fundo.destroy();
     this.fundo = this.add
       .image(centerX, centerY, "fundominigame2")
       .setOrigin(0.5)
       .setDisplaySize(largura, altura);
 
-    // Celular no centro (tamanho reduzido)
     if (this.celular) this.celular.destroy();
     this.celular = this.add
       .image(centerX, centerY, "celulargrupos")
       .setOrigin(0.5)
       .setScale(Math.min(largura, altura) * 0.00053);
 
-    // Seta sobre o celular (ajustada ainda mais para cima)
+    // SETA 1 - grupo1
     if (this.seta) this.seta.destroy();
-    this.seta = this.add
-      .image(
-        centerX + largura * 0.07,
-        centerY - altura * 0.2,
-        "setaentrargrupo"
-      ) // Movida mais para a direita
-      .setOrigin(0.5)
-      .setScale(Math.min(largura, altura) * 0.0014);
+    if (!InterfaceCelular.gruposDeletados.has("grupo1")) {
+      this.seta = this.add
+        .image(centerX + largura * 0.07, centerY - altura * 0.2, "setaentrargrupo")
+        .setOrigin(0.5)
+        .setScale(Math.min(largura, altura) * 0.0014)
+        .setInteractive()
+        .on("pointerdown", () => {
+          this.scene.start("InterfaceCelular", { grupo: "grupo1" });
+        });
+      this.criarAnimacaoPulo(this.seta);
+    }
 
-    // Outras setas
+    // SETA 2 - grupo2
     if (this.seta2) this.seta2.destroy();
-    this.seta2 = this.add
-      .image(
-        centerX + largura * 0.07,
-        centerY - altura * 0.061,
-        "setaentrargrupo"
-      ) // Segunda seta
-      .setOrigin(0.5)
-      .setScale(Math.min(largura, altura) * 0.0014);
+    if (!InterfaceCelular.gruposDeletados.has("grupo2")) {
+      this.seta2 = this.add
+        .image(centerX + largura * 0.07, centerY - altura * 0.01, "setaentrargrupo")
+        .setOrigin(0.5)
+        .setScale(Math.min(largura, altura) * 0.0014)
+        .setInteractive()
+        .on("pointerdown", () => {
+          this.scene.start("InterfaceCelular", { grupo: "grupo2" });
+        });
+      this.criarAnimacaoPulo(this.seta2);
+    }
 
+    // SETA 3 - grupo3
     if (this.seta3) this.seta3.destroy();
-    this.seta3 = this.add
-      .image(
-        centerX + largura * 0.07,
-        centerY + altura * 0.081,
-        "setaentrargrupo"
-      ) // Terceira seta movida mais para baixo
-      .setOrigin(0.5)
-      .setScale(Math.min(largura, altura) * 0.0014);
-
-    if (this.seta4) this.seta4.destroy();
-    this.seta4 = this.add
-      .image(
-        centerX + largura * 0.07,
-        centerY + altura * 0.23,
-        "setaentrargrupo"
-      ) // Quarta seta
-      .setOrigin(0.5)
-      .setScale(Math.min(largura, altura) * 0.0014);
+    if (!InterfaceCelular.gruposDeletados.has("grupo3")) {
+      this.seta3 = this.add
+        .image(centerX + largura * 0.07, centerY + altura * 0.19, "setaentrargrupo")
+        .setOrigin(0.5)
+        .setScale(Math.min(largura, altura) * 0.0014)
+        .setInteractive()
+        .on("pointerdown", () => {
+          this.scene.start("InterfaceCelular", { grupo: "grupo3" });
+        });
+      this.criarAnimacaoPulo(this.seta3);
+    }
   }
 }
-
