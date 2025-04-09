@@ -19,18 +19,9 @@ const config = {
   height: window.innerHeight,
   backgroundColor: "#000000",
   scene: [
-    MainMenu,
-    SelecaoPersonagem,
-    Tutorial,
-    Configuracoes,
-    DialogoInicial,
-    MapaInicial,
-    MapaEscola,
-    JogoCelular,
-    InterfaceCelular,
-    TelaIntroducao,
-    QuizLgpd,
-    DialogoProfessora,
+  InterfaceCelular,
+  JogoCelular,
+   
   ],
   scale: {
     mode: Phaser.Scale.RESIZE,
