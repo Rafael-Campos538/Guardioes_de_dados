@@ -1,3 +1,7 @@
+// Variável mensagensSensiveisDeletadas ficará true quando o jogador deletar todas as mensagens sensíveis e se ele tentar deletar o grupo sem deletar todas as mensagens, o jogo não irá exibir um toast.
+
+// Para exibir o toast é só usar this.toast.showMessage("Mensagem aqui");
+var mensagensSensiveisDeletadas = false;
 export default class InterfaceCelular extends Phaser.Scene {
   static mensagensDeletadas = new Set();
   static gruposDeletados = new Set();
@@ -137,11 +141,13 @@ export default class InterfaceCelular extends Phaser.Scene {
       .setScale(Math.min(largura, altura) * 0.00061)
       .setInteractive()
       .on("pointerdown", () => {
-        if (1 === 2) {
+        if (mensagensSensiveisDeletadas) {
           InterfaceCelular.gruposDeletados.add(this.grupoAtual); // Marca grupo como deletado
           this.scene.start("JogoCelular");
         } else {
-          this.toast.showMessage("Testando");
+          this.toast.showMessage(
+            "Ops! Você não deletou todas as mensagens sensíveis."
+          );
         }
       });
   }
@@ -173,6 +179,9 @@ export default class InterfaceCelular extends Phaser.Scene {
         InterfaceCelular.mensagensDeletadas.add(eoxisKey);
 
         const mensagemCorreta = eoxisKey === "eoxisPedro";
+        if (mensagemCorreta) {
+          mensagensSensiveisDeletadas = true;
+        }
         this.mostrarFeedback(mensagemCorreta);
       });
   }
