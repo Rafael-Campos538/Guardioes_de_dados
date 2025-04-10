@@ -110,7 +110,7 @@ export default class InterfaceCelularTres extends Phaser.Scene {
       .setInteractive()
       .on("pointerdown", () => {
         InterfaceCelularTres.gruposDeletados.add(this.grupoAtual);
-        this.hud.alterarPontuacao(10);
+        this.hud.alterarPontuacao(4);
         this.hud.esconder();
         this.scene.start("JogoCelular");
       });
@@ -142,7 +142,7 @@ export default class InterfaceCelularTres extends Phaser.Scene {
 
         InterfaceCelularTres.mensagensDeletadas.add(eoxisKey);
 
-        this.hud.alterarPontuacao(5);
+        this.hud.alterarPontuacao(4);
         this.mostrarFeedback(true, eoxisKey);
       });
   }
