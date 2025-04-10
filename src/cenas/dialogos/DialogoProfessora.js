@@ -54,7 +54,7 @@ export default class DialogoProfessora extends Phaser.Scene {
         img: "professora_base",
       },
       {
-        personagem: "Agente P.",
+        personagem: "Agente H.",
         texto:
           "Você é a professora responsável por criar o grupo de mensagens com os seus alunos?",
         img: this.personagemSelecionado,
@@ -65,7 +65,7 @@ export default class DialogoProfessora extends Phaser.Scene {
         img: "professora_base",
       },
       {
-        personagem: "Agente P.",
+        personagem: "Agente H.",
         texto:
           "Na verdade sim... Acontece que, de acordo com a LGPD, é proibido criar grupos com dados pessoais de alunos sem autorização.",
         img: this.personagemSelecionado,
@@ -76,13 +76,13 @@ export default class DialogoProfessora extends Phaser.Scene {
         img: "professora_base",
       },
       {
-        personagem: "Agente P.",
+        personagem: "Agente H.",
         texto:
           "Mesmo com boa intenção, quando você cria um grupo com os números dos alunos ou responsáveis, está compartilhando dados pessoais sem o consentimento deles.",
         img: this.personagemSelecionado,
       },
       {
-        personagem: "Agente P.",
+        personagem: "Agente H.",
         texto:
           "Além disso, mensagens enviadas nesses grupos não são monitoradas oficialmente pela escola, o que pode causar problemas sérios.",
         img: this.personagemSelecionado,
@@ -94,7 +94,7 @@ export default class DialogoProfessora extends Phaser.Scene {
         img: "professora_base",
       },
       {
-        personagem: "Agente P.",
+        personagem: "Agente H.",
         texto:
           "O ideal é usar plataformas autorizadas pela escola, que respeitam a privacidade e a segurança dos dados. Assim, todos estão protegidos.",
         img: this.personagemSelecionado,
