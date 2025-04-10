@@ -61,12 +61,12 @@ export default class QuizLgpd extends Phaser.Scene {
     // Feedback visual para respostas corretas e incorretas
     this.feedbackPositivo = this.add
       .image(centerX, centerY, "feedback_positivo")
-      .setScale(0.5)
+      .setScale(0.4)
       .setVisible(false); // Inicialmente invisível
 
     this.feedbackNegativo = this.add
       .image(centerX, centerY, "feedback_negativo")
-      .setScale(0.5)
+      .setScale(0.4)
       .setVisible(false); // Inicialmente invisível
 
     // Botão "Avançar", usado para ir para a próxima pergunta
