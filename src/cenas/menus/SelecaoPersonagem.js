@@ -57,7 +57,7 @@ export default class SelecaoPersonagem extends Phaser.Scene {
     this.confirmar = this.add
       .image(largura / 2, altura * 0.8, "confirmar")
       .setInteractive();
-    this.confirmar.setScale(0.2);
+    this.confirmar.setScale(0.8);
     this.confirmar.on("pointerdown", () => this.confirmSelection());
 
     // Título melhor posicionado

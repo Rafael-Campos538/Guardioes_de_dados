@@ -119,7 +119,7 @@ export default class DialogoProfessora extends Phaser.Scene {
     this.personagemDireita = this.add
       .image(centerX + largura * 0.3, centerY + altura * 0.2, "professora")
       .setOrigin(0.5)
-      .setScale(largura * 0.0002);
+      .setScale(largura * 0.0013);
 
     this.caixaDialogo = this.add
       .image(centerX, centerY + altura * 0.33, "caixa_dialogo")
