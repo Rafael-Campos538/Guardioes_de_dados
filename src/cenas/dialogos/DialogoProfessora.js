@@ -6,7 +6,6 @@ export default class DialogoProfessora extends Phaser.Scene {
   }
 
   preload() {
-    this.personagemSelecionado = this.registry.get("personagemSelecionado");
 
     this.load.font("Rainyhearts", "assets/fontes/rainyhearts.ttf");
     this.load.image("caixa_dialogo", "assets/imagens/ui/caixadialogo.png");
@@ -14,22 +13,21 @@ export default class DialogoProfessora extends Phaser.Scene {
       "fundominigame2",
       "assets/imagens/cenarios/fundominigame2.png"
     );
-    this.load.image(
-      "professora_base",
-      "assets/imagens/personagens/estaticos/professora_base.png"
-    );
+    this.load.image("professora", "assets/personagens/estaticos/professora_base.png");
+
     this.load.image(
       "botao_retangular",
       "assets/imagens/botoes/botao_retangular.png"
     );
 
-    // Carrega dinamicamente o personagem selecionado
-    if (this.personagemSelecionado) {
-      this.load.image(
-        this.personagemSelecionado,
-        `assets/imagens/personagens/estaticos/${this.personagemSelecionado}.png`
-      );
-    }
+    // Recupera o personagem selecionado na cena anterior
+    this.personagemSelecionado = this.registry.get("personagemSelecionado");
+
+    // Carrega o personagem selecionado
+    this.load.image(
+      this.personagemSelecionado,
+      `assets/personagens/estaticos/${this.personagemSelecionado}.png`
+    );
 
     // Sons
     this.load.audio("digitacao", "assets/sons/efeitos/digitacao_conv.mp3");
@@ -49,9 +47,9 @@ export default class DialogoProfessora extends Phaser.Scene {
 
     this.dialogos = [
       {
-        personagem: "Professora.",
+        personagem: "Professora",
         texto: "Olá, boas vindas a nossa escola. Como posso te ajudar?",
-        img: "professora_base",
+        img: "professora",
       },
       {
         personagem: "Agente H.",
@@ -60,9 +58,9 @@ export default class DialogoProfessora extends Phaser.Scene {
         img: this.personagemSelecionado,
       },
       {
-        personagem: "Professora.",
+        personagem: "Professora",
         texto: "Sim, sou eu. Aconteceu alguma coisa?",
-        img: "professora_base",
+        img: "professora",
       },
       {
         personagem: "Agente H.",
@@ -71,9 +69,9 @@ export default class DialogoProfessora extends Phaser.Scene {
         img: this.personagemSelecionado,
       },
       {
-        personagem: "Professora.",
+        personagem: "Professora",
         texto: "Mas o grupo era só para passar avisos e tirar dúvidas rápidas!",
-        img: "professora_base",
+        img: "professora",
       },
       {
         personagem: "Agente H.",
@@ -88,10 +86,10 @@ export default class DialogoProfessora extends Phaser.Scene {
         img: this.personagemSelecionado,
       },
       {
-        personagem: "Professora.",
+        personagem: "Professora",
         texto:
           "Entendo... Então como posso me comunicar com eles de forma segura?",
-        img: "professora_base",
+        img: "professora",
       },
       {
         personagem: "Agente H.",
@@ -100,10 +98,10 @@ export default class DialogoProfessora extends Phaser.Scene {
         img: this.personagemSelecionado,
       },
       {
-        personagem: "Professora.",
+        personagem: "Professora",
         texto:
           "Obrigada pelo aviso. Vou seguir as orientações corretas a partir de agora.",
-        img: "professora_base",
+        img: "professora",
       },
     ];
 
@@ -116,12 +114,12 @@ export default class DialogoProfessora extends Phaser.Scene {
         this.personagemSelecionado
       )
       .setOrigin(0.5)
-      .setScale(largura * 0.0017);
+      .setScale(largura * 0.0013);
 
     this.personagemDireita = this.add
-      .image(centerX + largura * 0.3, centerY + altura * 0.2, "professora_base")
+      .image(centerX + largura * 0.3, centerY + altura * 0.2, "professora")
       .setOrigin(0.5)
-      .setScale(largura * 0.0025);
+      .setScale(largura * 0.0002);
 
     this.caixaDialogo = this.add
       .image(centerX, centerY + altura * 0.33, "caixa_dialogo")
@@ -185,7 +183,7 @@ export default class DialogoProfessora extends Phaser.Scene {
 
     // Alterna a visibilidade das imagens
     this.personagemEsquerda.setVisible(fala.img === this.personagemSelecionado);
-    this.personagemDireita.setVisible(fala.img === "professora_base");
+    this.personagemDireita.setVisible(fala.img === "professora");
   }
 
   aplicarEfeitoDigitar(texto) {

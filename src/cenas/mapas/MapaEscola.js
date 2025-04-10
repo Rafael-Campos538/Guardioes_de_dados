@@ -45,7 +45,7 @@ export default class MapaEscola extends Phaser.Scene {
 
     // Adiciona o jogador com o spritesheet selecionado
     this.player = this.add
-      .sprite(width / 2, height / 2, "personagem_sprite")
+      .sprite(width * 0.133, height * 0.6, "personagem_sprite")
       .setOrigin(0.5)
       .setScale(1.4);
 
@@ -53,7 +53,7 @@ export default class MapaEscola extends Phaser.Scene {
     this.createAnimations();
 
     // Adiciona o cubo vermelho que pisca
-    this.cube = this.add.rectangle(width * 0.7, height * 0.5, 40, 40, 0xff0000);
+    this.cube = this.add.rectangle(width * 0.58, height * 0.25, 40, 40, 0xff0000);
     this.time.addEvent({
       delay: 300,
       callback: () => this.cube.setVisible(!this.cube.visible),

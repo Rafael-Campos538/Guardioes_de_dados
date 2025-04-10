@@ -67,7 +67,7 @@ export default class MapaInicial extends Phaser.Scene {
 
     this.createAnimations();
 
-    this.cube = this.add.rectangle(width * 0.7, height * 0.5, 40, 40, 0xff0000);
+    this.cube = this.add.rectangle(width * 0.853, height * 0.38, 40, 40, 0xff0000);
     this.time.addEvent({
       delay: 300,
       callback: () => this.cube.setVisible(!this.cube.visible),
