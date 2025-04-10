@@ -93,7 +93,7 @@ export default class QuizLgpd extends Phaser.Scene {
 
     // Texto das perguntas
     this.perguntaTexto = this.add
-      .text(centerX + 1, 420, "", {
+      .text(centerX + 1, centerY, "", {
         fontFamily: "Rainyhearts",
         fontSize: "27px", // Continua usando px, por ser o mais estável no Phaser
         color: "#FFFFFF",
