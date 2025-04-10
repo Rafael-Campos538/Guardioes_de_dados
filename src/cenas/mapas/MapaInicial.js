@@ -25,6 +25,7 @@ export default class MapaInicial extends Phaser.Scene {
 
   preload() {
     this.load.image("fundo_mapa", "assets/imagens/cenarios/fundocenaini.png");
+    this.load.image("alerta_mapa", "assets/imagens/cenarios/AlertaMapaGeral.png");
 
     const personagemSelecionado = this.registry.get("personagemSelecionado");
     this.load.spritesheet(
@@ -57,6 +58,16 @@ export default class MapaInicial extends Phaser.Scene {
       .setOrigin(0.5)
       .setDisplaySize(width, height);
 
+    // ADIÇÃO: Mostrar alerta_mapa no centro por 5 segundos
+    const alerta = this.add
+      .image(width / 2, height / 2, "alerta_mapa")
+      .setOrigin(0.5)
+      .setDepth(100); // garantir que fique no topo
+
+    this.time.delayedCall(5000, () => {
+      alerta.destroy();
+    });
+
     this.hud = new HUD(this);
     this.hud.mostrar();
 
@@ -74,16 +85,15 @@ export default class MapaInicial extends Phaser.Scene {
       loop: true,
     });
 
-    // Exclamação maior e piscando
     this.exclamacao = this.add
-      .image(this.cube.x, this.cube.y - 80, "icone_exclamacao") // mais acima
+      .image(this.cube.x, this.cube.y - 80, "icone_exclamacao")
       .setOrigin(0.5)
-      .setScale(0.15); // maior
+      .setScale(0.15);
 
     this.time.addEvent({
       delay: 300,
       callback: () => {
-        this.exclamacao.setVisible(!this.exclamacao.visible); // piscar
+        this.exclamacao.setVisible(!this.exclamacao.visible);
       },
       loop: true,
     });
@@ -115,7 +125,7 @@ export default class MapaInicial extends Phaser.Scene {
     }
 
     if (this.exclamacao) {
-      this.exclamacao.setPosition(this.cube.x, this.cube.y - 80); // manter altura ajustada
+      this.exclamacao.setPosition(this.cube.x, this.cube.y - 80);
     }
 
     this.isResizing = false;
