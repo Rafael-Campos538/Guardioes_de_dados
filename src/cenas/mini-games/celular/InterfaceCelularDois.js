@@ -110,6 +110,7 @@ export default class InterfaceCelularDois extends Phaser.Scene {
       .setInteractive()
       .on("pointerdown", () => {
         InterfaceCelularDois.gruposDeletados.add(this.grupoAtual);
+        this.hud.alterarPontuacao(45);
         this.hud.esconder();
         this.scene.start("JogoCelular");
       });
