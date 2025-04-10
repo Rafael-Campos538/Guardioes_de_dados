@@ -47,13 +47,13 @@ export default class QuizLgpd extends Phaser.Scene {
 
     // Botões interativos para as respostas, posicionados na tela
     this.botaoVerde = this.add
-      .image(centerX - 170, centerY + 240, "botao_verde")
+      .image(centerX - 110, centerY + 240, "botao_verde")
       .setScale(0.75)
       .setInteractive()
       .on("pointerdown", () => this.verificarBotao(true)); // Resposta correta
 
     this.botaoVermelho = this.add
-      .image(centerX + 210, centerY + 220, "botao_vermelho")
+      .image(centerX + 130, centerY + 240, "botao_vermelho")
       .setScale(0.75)
       .setInteractive()
       .on("pointerdown", () => this.verificarBotao(false)); // Resposta incorreta
