@@ -113,7 +113,7 @@ export default class SelecaoPersonagem extends Phaser.Scene {
   confirmSelection() {
     const personagemSelecionado = this.personagens[this.selectedIndex];
     this.registry.set("personagemSelecionado", personagemSelecionado); // variável global
-    this.scene.start("DialogoInicial"); //DialogoInicial
+    this.scene.start("DialogoProfessora"); //DialogoInicial
   }
 
   voltarMenuPrincipal() {
