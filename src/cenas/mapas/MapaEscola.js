@@ -137,7 +137,7 @@ export default class MapaEscola extends Phaser.Scene {
 
     let y11 = mapY(210, width, height);
     let x11 = mapX(410, width, height);
-
+/////////
     const t0 = bresenhamLine(x1,y1,x2,y2);
     const t1 = bresenhamLine(x2,y2,x3,y3);
     const t2 = bresenhamLine(x3,y3,x4,y4);
