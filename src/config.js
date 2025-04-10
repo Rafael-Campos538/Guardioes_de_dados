@@ -40,7 +40,7 @@ const config = {
     default: "arcade",
     arcade: {
       gravity: { y: 0 }, // Sem gravidade para jogos top-down
-      debug: true,
+      debug: false,
     },
   },
   scale: {
