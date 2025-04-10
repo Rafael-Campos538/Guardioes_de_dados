@@ -38,7 +38,7 @@ export default class QuizLgpd extends Phaser.Scene {
       .setOrigin(0.5)
       .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
 
-    // Criar HUD - AGORA EXPLICITAMENTE CHAMANDO CRIAR() E MOSTRAR()
+    // Criar HUD 
     console.log("[QuizLgpd] Criando HUD");
     this.hud = new HUD(this);
     this.hud.mostrar(); // Explicitamente chama mostrar
@@ -162,6 +162,8 @@ export default class QuizLgpd extends Phaser.Scene {
     } else {
       // Quando o jogo terminar, exibe a mensagem de "Game concluído"
       this.perguntaTexto.setText("Game concluído!");
+      this.hud.alterarPontuacao(20); // Adiciona 20 pontos à pontuação do jogador
+
       this.botaoVerde.setVisible(false);
       this.botaoVermelho.setVisible(false);
       this.botaoAvancar.setVisible(false);
@@ -193,10 +195,9 @@ export default class QuizLgpd extends Phaser.Scene {
     // Verifica se a escolha do usuário é correta ou não
     if (escolhaUsuario === perguntaAtual.respostaCorreta) {
       this.feedbackPositivo.setVisible(true); // Exibe feedback positivo
-      this.hud.alterarPontuacao(10);
+      this.hud.alterarPontuacao(36); // Adiciona 36 pontos à pontuação do jogador
     } else {
       this.feedbackNegativo.setVisible(true); // Exibe feedback negativo
-      this.hud.alterarPontuacao(-5);
     }
 
     // Exibe a mensagem adicional sobre dados sensíveis

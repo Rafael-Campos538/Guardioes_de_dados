@@ -1,3 +1,7 @@
+// ./src/cenas/mini-games/celular/InterfaceCelular.js
+
+import HUD from "../../../componentes/HUD.js";
+
 // Variável mensagensSensiveisDeletadas ficará true quando o jogador deletar todas as mensagens sensíveis e se ele tentar deletar o grupo sem deletar todas as mensagens, o jogo não irá exibir um toast.
 
 // Para exibir o toast é só usar this.toast.showMessage("Mensagem aqui");
@@ -61,6 +65,9 @@ export default class InterfaceCelular extends Phaser.Scene {
   create() {
     this.atualizarCena();
     this.scale.on("resize", this.atualizarCena, this);
+
+    this.hud = new HUD(this);
+    this.hud.mostrar();
 
     // Aqui cria o toast, é só copiar e colar isso dentro do create() das cenas onde o toast vai ser usado
     this.toast = this.rexUI.add.toast({
@@ -148,6 +155,8 @@ export default class InterfaceCelular extends Phaser.Scene {
       .on("pointerdown", () => {
         if (mensagensSensiveisDeletadas) {
           InterfaceCelular.gruposDeletados.add(this.grupoAtual); // Marca grupo como deletado
+          this.hud.alterarPontuacao(45);
+          this.hud.esconder();
           this.scene.start("JogoCelular");
         } else {
           this.toast.showMessage(
@@ -188,6 +197,11 @@ export default class InterfaceCelular extends Phaser.Scene {
           mensagensSensiveisDeletadas = true;
         }
         this.mostrarFeedback(mensagemCorreta);
+        if (mensagemCorreta) {
+          this.hud.alterarPontuacao(45);
+        } else {
+          this.hud.alterarPontuacao(-10);
+        }
       });
   }
 
