@@ -97,7 +97,7 @@ export default class DialogoInicial extends Phaser.Scene {
     // Valores fixos reduzidos para adequar ao tamanho da cena
     const escalaPersonagens = {
       menina1: largura * 0.0004,
-      menino2: largura * 0.0006,
+      menino2: largura * 0.001,
       menino3: largura * 0.0004,
       menina3: largura * 0.0004,
     };
