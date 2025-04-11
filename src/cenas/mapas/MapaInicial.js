@@ -23,7 +23,7 @@ function bresenhamLine(x1, y1, x2, y2) {
   const dx = x2 - x1;
   const dy = Math.abs(y2 - y1);
   let error = Math.floor(dx / 2);
-  const yStep = (y1 < y2) ? 1 : -1;
+  const yStep = y1 < y2 ? 1 : -1;
   let y = y1;
 
   // Iterate over bounding box generating points between start and end
@@ -68,7 +68,10 @@ export default class MapaInicial extends Phaser.Scene {
 
   preload() {
     this.load.image("fundo_mapa", "assets/imagens/cenarios/fundocenaini.png");
-    this.load.image("alerta_mapa", "assets/imagens/cenarios/AlertaMapaGeral.png");
+    this.load.image(
+      "alerta_mapa",
+      "assets/imagens/cenarios/AlertaMapaGeral.png"
+    );
 
     const personagemSelecionado = this.registry.get("personagemSelecionado");
     this.load.spritesheet(
@@ -92,20 +95,12 @@ export default class MapaInicial extends Phaser.Scene {
     );
 
     this.load.image("icone_exclamacao", "assets/imagens/ui/exclamacao.png");
-
-    // this.textures.generate('pixel', {
-    //   data: ['0xFFFFFF'],
-    //   pixelWidth: 1,
-    //   pixelHeight: 1
-    // });
   }
 
   create() {
-    // this.width = this.cameras.main.width;
-    // this.height = this.cameras.main.height;
+    // Usar tamanho fixo, como na segunda versão
     this.width = 1280;
     this.height = 632;
-    // console.log(this.width, this.height);
 
     // maps a screen‐pixel X into a world‐unit X
     function mapX(x, screenWidth, worldWidth) {
@@ -116,8 +111,6 @@ export default class MapaInicial extends Phaser.Scene {
     function mapY(y, screenHeight, worldHeight) {
       return ((y * worldHeight) / screenHeight) * 2.7;
     }
-
-    // this.phyiscs.world.setBounds(0, 0, this.width, this.height);
 
     this.background = this.add
       .image(this.width / 2, this.height / 2, "fundo_mapa")
@@ -137,14 +130,16 @@ export default class MapaInicial extends Phaser.Scene {
     this.hud = new HUD(this);
     this.hud.mostrar();
 
+    // Usar a versão com física
     this.player = this.physics.add
       .sprite(this.width / 2, this.height / 2, "personagem_sprite")
       .setOrigin(0.5)
       .setScale(1.4)
       .setCollideWorldBounds(true);
     this.player.body.setSize(30, 30); // Adjust these values as needed
-    this.player.body.setOffset(17, 17); //
+    this.player.body.setOffset(17, 17);
 
+    // Sistema de paredes com Bresenham
     this.walls = this.physics.add.staticGroup();
     let x1 = mapX(480, this.width, this.height);
     let y1 = mapY(190, this.width, this.height);
@@ -195,7 +190,7 @@ export default class MapaInicial extends Phaser.Scene {
 
     let pixels = t0.concat(t1, t2, t3, t4, t5, t6, t7, t8, t9);
 
-    // Modify the wall creation:
+    // Criar paredes com colisão
     pixels.forEach(([x, y]) => {
       // Create an invisible rectangle collider
       const wallPiece = this.add.rectangle(x, y, 5, 5, 0xffffff, 0);
@@ -206,15 +201,25 @@ export default class MapaInicial extends Phaser.Scene {
       // Add it to the staticGroup for collisions
       this.walls.add(wallPiece);
     });
-    // ── COLLIDER BETWEEN PLAYER & WALLS ──
+
+    // Adicionar colisão entre jogador e paredes
     this.physics.add.collider(this.player, this.walls);
 
     this.createAnimations();
 
-    this.cube = this.add
-      .image(this.width * 0.853, this.height * 0.38, "prof")
-      .setOrigin(0.5)
-      .setScale(1.5); // Ajuste o scale conforme o tamanho do asset
+    // Usar posicionamento da segunda versão
+    this.cube = this.add.rectangle(
+      this.width * 0.853,
+      this.height * 0.38,
+      40,
+      40,
+      0xff0000
+    );
+    this.time.addEvent({
+      delay: 300,
+      callback: () => this.cube.setVisible(!this.cube.visible),
+      loop: true,
+    });
 
     this.exclamacao = this.add
       .image(this.cube.x, this.cube.y - 80, "icone_exclamacao")
@@ -252,7 +257,7 @@ export default class MapaInicial extends Phaser.Scene {
     }
 
     if (this.cube) {
-      this.cube.setPosition(width * 0.7, height * 0.5);
+      this.cube.setPosition(width * 0.853, height * 0.38);
     }
 
     if (this.exclamacao) {
@@ -311,36 +316,36 @@ export default class MapaInicial extends Phaser.Scene {
   }
 
   update(time, delta) {
-    const speed = 160; // Adjusted for velocity
+    const speed = 160; // Velocidade ajustada para o sistema com física
     let moving = false;
 
     // Reset velocity
     this.player.setVelocity(0);
 
     if (this.cursors.left.isDown) {
-        this.player.setVelocityX(-speed);
-        this.player.anims.play("walk-side", true);
-        this.player.setFlipX(true);
-        moving = true;
+      this.player.setVelocityX(-speed);
+      this.player.anims.play("walk-side", true);
+      this.player.setFlipX(true);
+      moving = true;
     } else if (this.cursors.right.isDown) {
-        this.player.setVelocityX(speed);
-        this.player.anims.play("walk-side", true);
-        this.player.setFlipX(false);
-        moving = true;
+      this.player.setVelocityX(speed);
+      this.player.anims.play("walk-side", true);
+      this.player.setFlipX(false);
+      moving = true;
     }
 
     if (this.cursors.up.isDown) {
-        this.player.setVelocityY(-speed);
-        this.player.anims.play("walk-up", true);
-        moving = true;
+      this.player.setVelocityY(-speed);
+      this.player.anims.play("walk-up", true);
+      moving = true;
     } else if (this.cursors.down.isDown) {
-        this.player.setVelocityY(speed);
-        this.player.anims.play("walk-down", true);
-        moving = true;
+      this.player.setVelocityY(speed);
+      this.player.anims.play("walk-down", true);
+      moving = true;
     }
 
     if (!moving) {
-        this.player.anims.play("idle", true);
+      this.player.anims.play("idle", true);
     }
 
     const hitCube = Phaser.Geom.Rectangle.Contains(

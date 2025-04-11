@@ -1,6 +1,7 @@
 // ./src/cenas/mini-games/celular/InterfaceCelularDois.js
 
 import HUD from "../../../componentes/HUD.js";
+
 export default class InterfaceCelularDois extends Phaser.Scene {
   static mensagensDeletadas = new Set();
   static gruposDeletados = new Set();

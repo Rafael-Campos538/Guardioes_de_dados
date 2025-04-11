@@ -1,5 +1,3 @@
-// ./src/cenas/mini-games/celular/JogoCelular.js
-
 import InterfaceCelular from "./InterfaceCelular.js";
 import InterfaceCelularDois from "./InterfaceCelularDois.js";
 import InterfaceCelularTres from "./InterfaceCelularTres.js";

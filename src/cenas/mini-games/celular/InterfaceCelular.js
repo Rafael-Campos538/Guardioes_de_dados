@@ -178,11 +178,7 @@ export default class InterfaceCelular extends Phaser.Scene {
       .setScale(Math.min(largura, altura) * 0.00053);
 
     let eoxis = this.add
-      .image(
-        centerX + largura * 0.053,
-        posY + altura * 0.01,
-        "excluir_mensagem"
-      )
+      .image(centerX + largura * 0.053, posY + altura * 0.01, "excluir_mensagem")
       .setOrigin(0.5)
       .setScale(Math.min(largura, altura) * 0.0014)
       .setInteractive()
