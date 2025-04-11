@@ -62,7 +62,7 @@ export default class Tutorial extends Phaser.Scene {
       this.scene.start("MenuPrincipal");
       this.sound.play("botao");
     }
-
+  
     createButton(x, y, text, callback) {
       const button = this.add.image(x, y, "botao_retangular").setInteractive();
       button.setScale(0.3);

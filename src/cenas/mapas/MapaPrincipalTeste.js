@@ -20,7 +20,7 @@ export default class MapaPrincipalTeste extends Phaser.Scene {
     this.load.image("meta", "assets/mapas/MapaPrincipalTeste/meta.png");
     this.load.image("tech1", "assets/mapas/MapaPrincipalTeste/tech1.png");
   }
-
+   
   create() {
     // 1. Criar o objeto de mapa a partir do JSON
     const map = this.make.tilemap({ key: "mapa_principal" });

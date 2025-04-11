@@ -35,7 +35,7 @@ const config = {
     QuizLgpd,
     DialogoProfessora,
     MapaPrincipalTeste,
-  ],
+  ],  
   physics: {
     default: "arcade",
     arcade: {

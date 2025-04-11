@@ -59,7 +59,7 @@ export default class MapaEscola extends Phaser.Scene {
       "fundo_escola",
       "assets/imagens/cenarios/fundoesolaini.png"
     );
-
+  
     // Carrega o spritesheet do personagem selecionado
     const personagemSelecionado = this.registry.get("personagemSelecionado");
     this.load.spritesheet(

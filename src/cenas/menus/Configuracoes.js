@@ -18,7 +18,7 @@ export default class Configuracoes extends Phaser.Scene {
         .image(largura / 2, altura / 2, "fundo")
         .setOrigin(0.5)
         .setDisplaySize(largura, altura);
-
+    
         // Título melhor posicionado
         this.titulo = this.add
         .text(largura * 0.5, altura * 0.2, "Configurações", {

@@ -79,7 +79,7 @@ export default class MapaInicial extends Phaser.Scene {
         frameHeight: 64,
       }
     );
-
+  
     this.load.image('prof', 'assets/personagens/estaticos/prof.png');
 
     this.load.spritesheet(

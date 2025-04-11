@@ -68,7 +68,7 @@ export default class QuizLgpd extends Phaser.Scene {
       .image(centerX, centerY, "feedback_negativo")
       .setScale(0.4)
       .setVisible(false); // Inicialmente invisível
-
+  
     // Botão "Avançar", usado para ir para a próxima pergunta
     this.botaoAvancar = this.add
       .text(centerX, centerY + 240, "CONTINUAR", {
