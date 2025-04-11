@@ -6,14 +6,17 @@ export default class DialogoProfessora extends Phaser.Scene {
   }
 
   preload() {
-
     this.load.font("Rainyhearts", "assets/fontes/rainyhearts.ttf");
     this.load.image("caixa_dialogo", "assets/imagens/ui/caixadialogo.png");
     this.load.image(
       "fundominigame2",
       "assets/imagens/cenarios/fundominigame2.png"
     );
-    this.load.image("professora", "assets/personagens/estaticos/professora_base.png");
+    // Carregando a versão 2 da professora
+    this.load.image(
+      "professora",
+      "assets/personagens/estaticos/professora_base_versao2.png"
+    );
 
     this.load.image(
       "botao_retangular",
@@ -23,7 +26,7 @@ export default class DialogoProfessora extends Phaser.Scene {
     // Recupera o personagem selecionado na cena anterior
     this.personagemSelecionado = this.registry.get("personagemSelecionado");
 
-    // Carrega o personagem selecionado
+    // Carrega o personagem selecionado (já usando a versão 2)
     this.load.image(
       this.personagemSelecionado,
       `assets/personagens/estaticos/${this.personagemSelecionado}.png`
@@ -107,6 +110,18 @@ export default class DialogoProfessora extends Phaser.Scene {
 
     this.indice = 0;
 
+    // Escalas corrigidas para as dimensões das novas imagens
+    // Valores fixos reduzidos para adequar ao tamanho da cena
+    const escalaPersonagens = {
+      menina1: largura * 0.0003,
+      menino2: largura * 0.0005,
+      menino3: largura * 0.0003,
+      menina3: largura * 0.0003,
+    };
+
+    const escalaJogador =
+      escalaPersonagens[this.personagemSelecionado] || largura * 0.0003;
+
     this.personagemEsquerda = this.add
       .image(
         centerX - largura * 0.25,
@@ -114,12 +129,15 @@ export default class DialogoProfessora extends Phaser.Scene {
         this.personagemSelecionado
       )
       .setOrigin(0.5)
-      .setScale(largura * 0.0013);
+      .setScale(escalaJogador);
+
+    // Escala reduzida para a professora
+    const escalaProfessora = largura * 0.0003;
 
     this.personagemDireita = this.add
       .image(centerX + largura * 0.3, centerY + altura * 0.2, "professora")
       .setOrigin(0.5)
-      .setScale(largura * 0.0013);
+      .setScale(escalaProfessora);
 
     this.caixaDialogo = this.add
       .image(centerX, centerY + altura * 0.33, "caixa_dialogo")

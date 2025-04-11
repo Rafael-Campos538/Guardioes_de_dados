@@ -1,3 +1,4 @@
+// ./src/cenas/dialogos/DialogoInicial.js
 export default class DialogoInicial extends Phaser.Scene {
   constructor() {
     super({ key: "DialogoInicial" });
@@ -14,13 +15,17 @@ export default class DialogoInicial extends Phaser.Scene {
     // Recupera o personagem selecionado na cena anterior
     this.personagemSelecionado = this.registry.get("personagemSelecionado");
 
-    // Carrega o personagem selecionado
+    // Carrega o personagem selecionado (já usando a versão 2)
     this.load.image(
       this.personagemSelecionado,
       `assets/personagens/estaticos/${this.personagemSelecionado}.png`
     );
 
-    this.load.image("cientista", "assets/personagens/estaticos/agente_p.png");
+    // Carregando a versão 2 do agente
+    this.load.image(
+      "cientista",
+      "assets/personagens/estaticos/agente_p_versao2.png"
+    );
     this.load.image(
       "botao_retangular",
       "assets/imagens/botoes/botao_retangular.png"
@@ -75,7 +80,8 @@ export default class DialogoInicial extends Phaser.Scene {
       },
       {
         personagem: "Agente P.",
-        texto: "Você deve dizer se as mensagem são aprovadas ou não. Se tiverem dados sensíveis, não aprove.",
+        texto:
+          "Você deve dizer se as mensagem são aprovadas ou não. Se tiverem dados sensíveis, não aprove.",
         img: "cientista",
       },
       {
@@ -87,6 +93,18 @@ export default class DialogoInicial extends Phaser.Scene {
 
     this.indice = 0;
 
+    // Escalas corrigidas para as dimensões das novas imagens
+    // Valores fixos reduzidos para adequar ao tamanho da cena
+    const escalaPersonagens = {
+      menina1: largura * 0.0004,
+      menino2: largura * 0.0006,
+      menino3: largura * 0.0004,
+      menina3: largura * 0.0004,
+    };
+
+    const escalaJogador =
+      escalaPersonagens[this.personagemSelecionado] || largura * 0.0004;
+
     this.personagemEsquerda = this.add
       .image(
         centerX - largura * 0.25,
@@ -94,12 +112,15 @@ export default class DialogoInicial extends Phaser.Scene {
         this.personagemSelecionado
       )
       .setOrigin(0.5)
-      .setScale(largura * 0.0017);
+      .setScale(escalaJogador);
+
+    // Escala reduzida para o agente
+    const escalaAgente = largura * 0.0008;
 
     this.personagemDireita = this.add
-      .image(centerX + largura * 0.3, centerY + altura * 0.02, "cientista")
+      .image(centerX + largura * 0.3, centerY + altura * 0.12, "cientista")
       .setOrigin(0.5)
-      .setScale(largura * 0.0025);
+      .setScale(escalaAgente);
 
     const caixaDialogo = this.add
       .image(centerX, centerY + altura * 0.35, "caixa_dialogo")
