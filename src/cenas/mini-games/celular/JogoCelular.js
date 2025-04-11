@@ -1,9 +1,5 @@
 import InterfaceCelular from "./InterfaceCelular.js";
 import InterfaceCelularDois from "./InterfaceCelularDois.js";
-import InterfaceCelularTres from "./InterfaceCelularTres.js"; // <-- Adicionado aqui
-
-import InterfaceCelular from "./InterfaceCelular.js";
-import InterfaceCelularDois from "./InterfaceCelularDois.js";
 import InterfaceCelularTres from "./InterfaceCelularTres.js";
 import HUD from "../../../componentes/HUD.js";
 
