@@ -18,7 +18,7 @@ export default class MenuPrincipal extends Phaser.Scene {
       "assets/imagens/botoes/botao_retangular.png"
     );
     this.load.image("titulo", "assets/imagens/ui/menu_principal_titulo.png");
-    
+
     this.load.image("logo", "assets/imagens/ui/logo.png");
     // Carregar fontes
     this.load.font("Rainyhearts", "assets/fontes/rainyhearts.ttf");
@@ -54,7 +54,7 @@ export default class MenuPrincipal extends Phaser.Scene {
         strokeThickness: 6,
       })
       .setOrigin(0.5); */
-    this.add.image(largura * 0.5, altura * 0.3, "logo").setScale(0.5);
+    this.add.image(largura * 0.5, altura * 0.4, "logo").setScale(0.5);
 
     // Configurar botões com posições relativas
     this.createButton(largura * 0.5, altura * 0.7, "Jogar", () =>
@@ -154,6 +154,7 @@ export default class MenuPrincipal extends Phaser.Scene {
       duration: 1020,
       ease: "Power2",
       onComplete: () => {
+        //this.scene.start("MapaTeste");
         this.scene.start("Tutorial");
       },
     });
@@ -174,6 +175,7 @@ export default class MenuPrincipal extends Phaser.Scene {
       duration: 1020,
       ease: "Power2",
       onComplete: () => {
+        //this.scene.start("MapaPrincipalTeste");
         this.scene.start("Configuracoes");
       },
     });

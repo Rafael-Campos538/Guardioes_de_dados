@@ -4,7 +4,7 @@ export default class HUD {
 
     // Inicializar com valores padrão seguros
     this._pontuacao = 0;
-    this._pontuacaoMaxima = 100;
+    this._pontuacaoMaxima = 400;
     this._seguranca = 0;
 
     // Verificar se já existem valores no Registry global do Phaser
@@ -14,11 +14,11 @@ export default class HUD {
       this.scene.registry.set("pontuacao", 0);
     }
 
-    if (this.scene.registry.has("pontuacaoMaxima")) {
+    /*if (this.scene.registry.has("pontuacaoMaxima")) {
       this._pontuacaoMaxima = this.scene.registry.get("pontuacaoMaxima");
     } else {
       this.scene.registry.set("pontuacaoMaxima", 100);
-    }
+    }*/
 
     // Sempre calcular a segurança com base na pontuação
     this._seguranca =

@@ -38,7 +38,7 @@ export default class QuizLgpd extends Phaser.Scene {
       .setOrigin(0.5)
       .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
 
-    // Criar HUD - AGORA EXPLICITAMENTE CHAMANDO CRIAR() E MOSTRAR()
+    // Criar HUD 
     console.log("[QuizLgpd] Criando HUD");
     this.hud = new HUD(this);
     this.hud.mostrar(); // Explicitamente chama mostrar
@@ -47,13 +47,13 @@ export default class QuizLgpd extends Phaser.Scene {
 
     // Botões interativos para as respostas, posicionados na tela
     this.botaoVerde = this.add
-      .image(centerX - 190, centerY + 240, "botao_verde")
+      .image(centerX - 110, centerY + 240, "botao_verde")
       .setScale(0.75)
       .setInteractive()
       .on("pointerdown", () => this.verificarBotao(true)); // Resposta correta
 
     this.botaoVermelho = this.add
-      .image(centerX + 200, centerY + 240, "botao_vermelho")
+      .image(centerX + 130, centerY + 240, "botao_vermelho")
       .setScale(0.75)
       .setInteractive()
       .on("pointerdown", () => this.verificarBotao(false)); // Resposta incorreta
@@ -61,12 +61,12 @@ export default class QuizLgpd extends Phaser.Scene {
     // Feedback visual para respostas corretas e incorretas
     this.feedbackPositivo = this.add
       .image(centerX, centerY, "feedback_positivo")
-      .setScale(0.5)
+      .setScale(0.4)
       .setVisible(false); // Inicialmente invisível
 
     this.feedbackNegativo = this.add
       .image(centerX, centerY, "feedback_negativo")
-      .setScale(0.5)
+      .setScale(0.4)
       .setVisible(false); // Inicialmente invisível
 
     // Botão "Avançar", usado para ir para a próxima pergunta
@@ -93,7 +93,7 @@ export default class QuizLgpd extends Phaser.Scene {
 
     // Texto das perguntas
     this.perguntaTexto = this.add
-      .text(centerX + 1, 420, "", {
+      .text(centerX + 1, centerY, "", {
         fontFamily: "Rainyhearts",
         fontSize: "27px", // Continua usando px, por ser o mais estável no Phaser
         color: "#FFFFFF",
@@ -162,6 +162,8 @@ export default class QuizLgpd extends Phaser.Scene {
     } else {
       // Quando o jogo terminar, exibe a mensagem de "Game concluído"
       this.perguntaTexto.setText("Game concluído!");
+      this.hud.alterarPontuacao(20); // Adiciona 20 pontos à pontuação do jogador
+
       this.botaoVerde.setVisible(false);
       this.botaoVermelho.setVisible(false);
       this.botaoAvancar.setVisible(false);
@@ -193,10 +195,9 @@ export default class QuizLgpd extends Phaser.Scene {
     // Verifica se a escolha do usuário é correta ou não
     if (escolhaUsuario === perguntaAtual.respostaCorreta) {
       this.feedbackPositivo.setVisible(true); // Exibe feedback positivo
-      this.hud.alterarPontuacao(10);
+      this.hud.alterarPontuacao(36); // Adiciona 36 pontos à pontuação do jogador
     } else {
       this.feedbackNegativo.setVisible(true); // Exibe feedback negativo
-      this.hud.alterarPontuacao(-5);
     }
 
     // Exibe a mensagem adicional sobre dados sensíveis

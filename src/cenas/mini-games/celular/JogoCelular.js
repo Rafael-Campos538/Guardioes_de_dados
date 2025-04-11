@@ -2,6 +2,11 @@ import InterfaceCelular from "./InterfaceCelular.js";
 import InterfaceCelularDois from "./InterfaceCelularDois.js";
 import InterfaceCelularTres from "./InterfaceCelularTres.js"; // <-- Adicionado aqui
 
+import InterfaceCelular from "./InterfaceCelular.js";
+import InterfaceCelularDois from "./InterfaceCelularDois.js";
+import InterfaceCelularTres from "./InterfaceCelularTres.js";
+import HUD from "../../../componentes/HUD.js";
+
 export default class JogoCelular extends Phaser.Scene {
   constructor() {
     super({ key: "JogoCelular" });
@@ -14,6 +19,9 @@ export default class JogoCelular extends Phaser.Scene {
   }
 
   create() {
+    this.hud = new HUD(this);
+    this.hud.mostrar();
+
     this.atualizarCena();
     this.scale.on("resize", this.atualizarCena, this);
   }
@@ -56,6 +64,7 @@ export default class JogoCelular extends Phaser.Scene {
         .setScale(Math.min(largura, altura) * 0.0014)
         .setInteractive()
         .on("pointerdown", () => {
+          this.hud.esconder();
           this.scene.start("InterfaceCelular", { grupo: "grupo1" });
         });
       this.criarAnimacaoPulo(this.seta);
@@ -70,6 +79,7 @@ export default class JogoCelular extends Phaser.Scene {
         .setScale(Math.min(largura, altura) * 0.0014)
         .setInteractive()
         .on("pointerdown", () => {
+          this.hud.esconder();
           this.scene.start("InterfaceCelularDois", { grupo: "grupo2" });
         });
       this.criarAnimacaoPulo(this.seta2);
@@ -84,6 +94,7 @@ export default class JogoCelular extends Phaser.Scene {
         .setScale(Math.min(largura, altura) * 0.0014)
         .setInteractive()
         .on("pointerdown", () => {
+          this.hud.esconder();
           this.scene.start("InterfaceCelularTres", { grupo: "grupo3" });
         });
       this.criarAnimacaoPulo(this.seta3);

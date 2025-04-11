@@ -1,3 +1,12 @@
+// ./src/cenas/mini-games/celular/InterfaceCelular.js
+
+import HUD from "../../../componentes/HUD.js";
+
+// Variável mensagensSensiveisDeletadas ficará true quando o jogador deletar todas as mensagens sensíveis e se ele tentar deletar o grupo sem deletar todas as mensagens, o jogo não irá exibir um toast.
+
+// Para exibir o toast é só usar this.toast.showMessage("Mensagem aqui");
+// É necessário carregar o plugin no preload e criar o toast no create, só copiar as seções comentadas aqui
+var mensagensSensiveisDeletadas = false;
 export default class InterfaceCelular extends Phaser.Scene {
   static mensagensDeletadas = new Set();
   static gruposDeletados = new Set();
@@ -7,17 +16,46 @@ export default class InterfaceCelular extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("fundominigame2", "assets/imagens/cenarios/fundominigame2.png");
-    this.load.image("celularmensagens", "assets/imagens/celular/celularmensagens.png");
+    this.load.image(
+      "fundominigame2",
+      "assets/imagens/cenarios/fundominigame2.png"
+    );
+    this.load.image(
+      "celularmensagens",
+      "assets/imagens/celular/celularmensagens.png"
+    );
     this.load.image("deletargrupo", "assets/imagens/celular/deletargrupo.png");
-    this.load.image("mensagem_claudia", "assets/imagens/celular/mensagem_claudia.png");
-    this.load.image("mensagem_joao", "assets/imagens/celular/mensagem_joao.png");
+    this.load.image(
+      "mensagem_claudia",
+      "assets/imagens/celular/mensagem_claudia.png"
+    );
+    this.load.image(
+      "mensagem_joao",
+      "assets/imagens/celular/mensagem_joao.png"
+    );
     this.load.image("mensagem_ana", "assets/imagens/celular/mensagem_ana.png");
-    this.load.image("mensagem_pedro", "assets/imagens/celular/mensagem_pedro.png");
-    this.load.image("excluir_mensagem", "assets/imagens/celular/excluir_mensagem.png");
+    this.load.image(
+      "mensagem_pedro",
+      "assets/imagens/celular/mensagem_pedro.png"
+    );
+    this.load.image(
+      "excluir_mensagem",
+      "assets/imagens/celular/excluir_mensagem.png"
+    );
     this.load.image("feedback_correto", "assets/imagens/feedback/correto.png");
-    this.load.image("feedback_incorreto", "assets/imagens/feedback/incorreto.png");
+    this.load.image(
+      "feedback_incorreto",
+      "assets/imagens/feedback/incorreto.png"
+    );
     this.load.font("rainyhearts", "assets/fontes/rainyhearts.ttf");
+
+    // Carregar o plugin do RexUI, responsável pelo toast. É só copiar e colar isso dentro do preload() das cenas onde o toast vai ser usado
+    this.load.scenePlugin(
+      "rexuiplugin",
+      "https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js",
+      "rexUI",
+      "rexUI"
+    );
   }
 
   init(data) {
@@ -27,6 +65,42 @@ export default class InterfaceCelular extends Phaser.Scene {
   create() {
     this.atualizarCena();
     this.scale.on("resize", this.atualizarCena, this);
+
+    this.hud = new HUD(this);
+    this.hud.mostrar();
+
+    // Aqui cria o toast, é só copiar e colar isso dentro do create() das cenas onde o toast vai ser usado
+    this.toast = this.rexUI.add.toast({
+      x: this.cameras.main.centerX,
+      y: this.cameras.main.centerY,
+
+      // Fundo com borda azul e interior escuro semi-transparente
+      background: this.rexUI.add
+        .roundRectangle(0, 0, 2, 2, 20, 0x00ccff)
+        .setStrokeStyle(3, 0x00ccff) // Borda #00ccff
+        .setFillStyle(0x010100, 0.8), // Fundo #010100 com 80% de opacidade
+
+      // Texto branco
+      text: this.add.text(0, 0, "", {
+        fontSize: "24px",
+        fontFamily: "Arial",
+        color: "#ffffff", // Texto branco
+        align: "center",
+      }),
+
+      space: {
+        left: 25,
+        right: 25,
+        top: 20,
+        bottom: 20,
+      },
+
+      duration: {
+        in: 300,
+        hold: 2500,
+        out: 300,
+      },
+    });
   }
 
   atualizarCena() {
@@ -47,10 +121,30 @@ export default class InterfaceCelular extends Phaser.Scene {
       .setOrigin(0.5)
       .setScale(Math.min(largura, altura) * 0.00053);
 
-    this.criarMensagem(centerX, centerY - altura * 0.2, "mensagem_claudia", "eoxisClaud");
-    this.criarMensagem(centerX, centerY - altura * 0.057, "mensagem_joao", "eoxisJoao");
-    this.criarMensagem(centerX, centerY + altura * 0.08, "mensagem_ana", "eoxisAna");
-    this.criarMensagem(centerX, centerY + altura * 0.222, "mensagem_pedro", "eoxisPedro");
+    this.criarMensagem(
+      centerX,
+      centerY - altura * 0.2,
+      "mensagem_claudia",
+      "eoxisClaud"
+    );
+    this.criarMensagem(
+      centerX,
+      centerY - altura * 0.057,
+      "mensagem_joao",
+      "eoxisJoao"
+    );
+    this.criarMensagem(
+      centerX,
+      centerY + altura * 0.08,
+      "mensagem_ana",
+      "eoxisAna"
+    );
+    this.criarMensagem(
+      centerX,
+      centerY + altura * 0.222,
+      "mensagem_pedro",
+      "eoxisPedro"
+    );
 
     if (this.deletarBotao) this.deletarBotao.destroy();
     this.deletarBotao = this.add
@@ -59,8 +153,16 @@ export default class InterfaceCelular extends Phaser.Scene {
       .setScale(Math.min(largura, altura) * 0.00061)
       .setInteractive()
       .on("pointerdown", () => {
-        InterfaceCelular.gruposDeletados.add(this.grupoAtual); // Marca grupo como deletado
-        this.scene.start("JogoCelular");
+        if (mensagensSensiveisDeletadas) {
+          InterfaceCelular.gruposDeletados.add(this.grupoAtual); // Marca grupo como deletado
+          this.hud.alterarPontuacao(45);
+          this.hud.esconder();
+          this.scene.start("JogoCelular");
+        } else {
+          this.toast.showMessage(
+            "Ops! Você não deletou todas as mensagens sensíveis."
+          );
+        }
       });
   }
 
@@ -87,7 +189,15 @@ export default class InterfaceCelular extends Phaser.Scene {
         InterfaceCelular.mensagensDeletadas.add(eoxisKey);
 
         const mensagemCorreta = eoxisKey === "eoxisPedro";
+        if (mensagemCorreta) {
+          mensagensSensiveisDeletadas = true;
+        }
         this.mostrarFeedback(mensagemCorreta);
+        if (mensagemCorreta) {
+          this.hud.alterarPontuacao(45);
+        } else {
+          this.hud.alterarPontuacao(-10);
+        }
       });
   }
 
