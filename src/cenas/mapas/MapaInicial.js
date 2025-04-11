@@ -80,6 +80,8 @@ export default class MapaInicial extends Phaser.Scene {
       }
     );
 
+    this.load.image('prof', 'assets/personagens/estaticos/prof.png');
+
     this.load.spritesheet(
       "passarinho",
       "assets/personagens/spritesheets/passarinho.png",
@@ -107,12 +109,12 @@ export default class MapaInicial extends Phaser.Scene {
 
     // maps a screen‐pixel X into a world‐unit X
     function mapX(x, screenWidth, worldWidth) {
-      return x * worldWidth / screenWidth * 2;
+      return ((x * worldWidth) / screenWidth) * 2;
     }
 
     // maps a screen‐pixel Y into a world‐unit Y
     function mapY(y, screenHeight, worldHeight) {
-      return y * worldHeight / screenHeight * 2.7;
+      return ((y * worldHeight) / screenHeight) * 2.7;
     }
 
     // this.phyiscs.world.setBounds(0, 0, this.width, this.height);
@@ -136,87 +138,83 @@ export default class MapaInicial extends Phaser.Scene {
     this.hud.mostrar();
 
     this.player = this.physics.add
-    .sprite(this.width / 2, this.height / 2, "personagem_sprite")
-    .setOrigin(0.5)
-    .setScale(1.4)
-    .setCollideWorldBounds(true);  
+      .sprite(this.width / 2, this.height / 2, "personagem_sprite")
+      .setOrigin(0.5)
+      .setScale(1.4)
+      .setCollideWorldBounds(true);
     this.player.body.setSize(30, 30); // Adjust these values as needed
-    this.player.body.setOffset(17, 17); // 
+    this.player.body.setOffset(17, 17); //
 
+    this.walls = this.physics.add.staticGroup();
+    let x1 = mapX(480, this.width, this.height);
+    let y1 = mapY(190, this.width, this.height);
 
-      this.walls = this.physics.add.staticGroup();
-      let x1 = mapX(480, this.width, this.height);
-      let y1 = mapY(190, this.width, this.height);
-      
-      let x2 = mapX(480, this.width, this.height);
-      let y2 = mapY(275, this.width, this.height);
-      
-      let x3 = mapX(676, this.width, this.height);
-      let y3 = mapY(275, this.width, this.height);
-      
-      let x4 = mapX(676, this.width, this.height);
-      let y4 = mapY(190, this.width, this.height);
+    let x2 = mapX(480, this.width, this.height);
+    let y2 = mapY(275, this.width, this.height);
 
-      let x5 = mapX(696, this.width, this.height);
-      let y5 = mapY(336, this.width, this.height);
+    let x3 = mapX(676, this.width, this.height);
+    let y3 = mapY(275, this.width, this.height);
 
-      let x6 = mapX(878, this.width, this.height);
-      let y6 = mapY(337, this.width, this.height);
+    let x4 = mapX(676, this.width, this.height);
+    let y4 = mapY(190, this.width, this.height);
 
-      let x7 = mapX(878, this.width, this.height);
-      let y7 = mapY(218, this.width, this.height);
+    let x5 = mapX(696, this.width, this.height);
+    let y5 = mapY(336, this.width, this.height);
 
-      let x8 = mapX(1182, this.width, this.height);
-      let y8 = mapY(218, this.width, this.height);
+    let x6 = mapX(878, this.width, this.height);
+    let y6 = mapY(337, this.width, this.height);
 
-      let x9 = mapX(676, this.width, this.height);
-      let y9 = mapY(138, this.width, this.height);
+    let x7 = mapX(878, this.width, this.height);
+    let y7 = mapY(218, this.width, this.height);
 
-      let x10 = mapX(676, this.width, this.height);
-      let y10 = mapY(182, this.width, this.height);
+    let x8 = mapX(1182, this.width, this.height);
+    let y8 = mapY(218, this.width, this.height);
 
-      let x11 = mapX(1180, this.width, this.height);
-      let y11 = mapY(138, this.width, this.height);
+    let x9 = mapX(676, this.width, this.height);
+    let y9 = mapY(138, this.width, this.height);
 
-      let x12 = mapX(1180, this.width, this.height);
-      let y12 = mapY(222, this.width, this.height);
-    
-      const t0 = bresenhamLine(x1, y1, x2, y2);
-      const t1 = bresenhamLine(x2, y2, x3, y3);
-      const t2 = bresenhamLine(x1,y1,x4,y4);
-      const t3 = bresenhamLine(x3,y3,x5,y5);
-      const t4 = bresenhamLine(x5,y5,x6,y6);
-      const t5 = bresenhamLine(x6,y6,x7,y7);
-      const t6 = bresenhamLine(x7,y7,x8,y8);
-      const t7  = bresenhamLine(x10,y10,x9,y9);
-      const t8 = bresenhamLine(x9,y9,x11,y11);
-      const t9 = bresenhamLine(x11,y11,x12,y12);
+    let x10 = mapX(676, this.width, this.height);
+    let y10 = mapY(182, this.width, this.height);
 
+    let x11 = mapX(1180, this.width, this.height);
+    let y11 = mapY(138, this.width, this.height);
 
-      let pixels = t0.concat(t1,t2,t3,t4,t5,t6,t7,t8,t9);
+    let x12 = mapX(1180, this.width, this.height);
+    let y12 = mapY(222, this.width, this.height);
 
-// Modify the wall creation:
-pixels.forEach(([x, y]) => {
-  // Create an invisible rectangle collider
-  const wallPiece = this.add.rectangle(x, y, 5, 5, 0xffffff, 0);
-  
-  // Enable physics on the rectangle and mark it as static
-  this.physics.add.existing(wallPiece, true);
-  
-  // Add it to the staticGroup for collisions
-  this.walls.add(wallPiece);
-});
-      // ── COLLIDER BETWEEN PLAYER & WALLS ──
-      this.physics.add.collider(this.player, this.walls);
+    const t0 = bresenhamLine(x1, y1, x2, y2);
+    const t1 = bresenhamLine(x2, y2, x3, y3);
+    const t2 = bresenhamLine(x1, y1, x4, y4);
+    const t3 = bresenhamLine(x3, y3, x5, y5);
+    const t4 = bresenhamLine(x5, y5, x6, y6);
+    const t5 = bresenhamLine(x6, y6, x7, y7);
+    const t6 = bresenhamLine(x7, y7, x8, y8);
+    const t7 = bresenhamLine(x10, y10, x9, y9);
+    const t8 = bresenhamLine(x9, y9, x11, y11);
+    const t9 = bresenhamLine(x11, y11, x12, y12);
+
+    let pixels = t0.concat(t1, t2, t3, t4, t5, t6, t7, t8, t9);
+
+    // Modify the wall creation:
+    pixels.forEach(([x, y]) => {
+      // Create an invisible rectangle collider
+      const wallPiece = this.add.rectangle(x, y, 5, 5, 0xffffff, 0);
+
+      // Enable physics on the rectangle and mark it as static
+      this.physics.add.existing(wallPiece, true);
+
+      // Add it to the staticGroup for collisions
+      this.walls.add(wallPiece);
+    });
+    // ── COLLIDER BETWEEN PLAYER & WALLS ──
+    this.physics.add.collider(this.player, this.walls);
 
     this.createAnimations();
 
-    this.cube = this.add.rectangle(this.width * 0.853, this.height * 0.38, 40, 40, 0xff0000);
-    this.time.addEvent({
-      delay: 300,
-      callback: () => this.cube.setVisible(!this.cube.visible),
-      loop: true,
-    });
+    this.cube = this.add
+      .image(this.width * 0.853, this.height * 0.38, "prof")
+      .setOrigin(0.5)
+      .setScale(1.5); // Ajuste o scale conforme o tamanho do asset
 
     this.exclamacao = this.add
       .image(this.cube.x, this.cube.y - 80, "icone_exclamacao")

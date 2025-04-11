@@ -73,6 +73,7 @@ export default class MapaEscola extends Phaser.Scene {
 
     // Carrega o ícone de exclamação
     this.load.image("exclamacao", "assets/imagens/ui/exclamacao.png");
+    this.load.image("prof", "assets/personagens/estaticos/prof.png");
   }
 
   create() {
@@ -94,15 +95,15 @@ export default class MapaEscola extends Phaser.Scene {
       .setOrigin(0.5)
       .setScale(1.4);
 
-      this.player.body.setSize(30, 30); // Adjust these values as needed
-      this.player.body.setOffset(17, 17); // 
+    this.player.body.setSize(30, 30); // Adjust these values as needed
+    this.player.body.setOffset(17, 17); //
 
-    function mapX(x, width, height){
-      return (x * width) / height * 0.9;
+    function mapX(x, width, height) {
+      return ((x * width) / height) * 0.9;
     }
 
-    function mapY(y, width, height){
-      return (y * height) / width * 3.5;
+    function mapY(y, width, height) {
+      return ((y * height) / width) * 3.5;
     }
 
     let x1 = mapX(64, width, height);
@@ -137,53 +138,43 @@ export default class MapaEscola extends Phaser.Scene {
 
     let y11 = mapY(210, width, height);
     let x11 = mapX(410, width, height);
-/////////
-    const t0 = bresenhamLine(x1,y1,x2,y2);
-    const t1 = bresenhamLine(x2,y2,x3,y3);
-    const t2 = bresenhamLine(x3,y3,x4,y4);
-    const t3 = bresenhamLine(x1,y1,x5,y5);
-    const t4 = bresenhamLine(x5,y5,x6,y6);
-    const t5 = bresenhamLine(x6,y6,x7,y7);
-    const t6 = bresenhamLine(x7,y7,x8,y8);
-    const t7 = bresenhamLine(x8,y8,x9,y9);
-    const t8 = bresenhamLine(x9,y9,x10,y10);
-    const t9 = bresenhamLine(x10,y10,x11,y11);
+    /////////
+    const t0 = bresenhamLine(x1, y1, x2, y2);
+    const t1 = bresenhamLine(x2, y2, x3, y3);
+    const t2 = bresenhamLine(x3, y3, x4, y4);
+    const t3 = bresenhamLine(x1, y1, x5, y5);
+    const t4 = bresenhamLine(x5, y5, x6, y6);
+    const t5 = bresenhamLine(x6, y6, x7, y7);
+    const t6 = bresenhamLine(x7, y7, x8, y8);
+    const t7 = bresenhamLine(x8, y8, x9, y9);
+    const t8 = bresenhamLine(x9, y9, x10, y10);
+    const t9 = bresenhamLine(x10, y10, x11, y11);
 
-
-    let pixels = t0.concat(t1,t2,t3,t4,t5,t6,t7,t8,t9);
-
+    let pixels = t0.concat(t1, t2, t3, t4, t5, t6, t7, t8, t9);
 
     this.walls = this.physics.add.staticGroup();
-
-
-
-
-
 
     // Modify the wall creation:
     pixels.forEach(([x, y]) => {
       // Create an invisible rectangle collider
       const wallPiece = this.add.rectangle(x, y, 5, 5, 0xffffff, 0);
-      
+
       // Enable physics on the rectangle and mark it as static
       this.physics.add.existing(wallPiece, true);
-      
+
       // Add it to the staticGroup for collisions
       this.walls.add(wallPiece);
     });
-      // ── COLLIDER BETWEEN PLAYER & WALLS ──
-      this.physics.add.collider(this.player, this.walls);
+    // ── COLLIDER BETWEEN PLAYER & WALLS ──
+    this.physics.add.collider(this.player, this.walls);
 
     // Cria as animações
     this.createAnimations();
 
-    // Adiciona o cubo vermelho que pisca
-    this.cube = this.add.rectangle(width * 0.58, height * 0.25, 40, 40, 0xff0000);
-    this.time.addEvent({
-      delay: 300,
-      callback: () => this.cube.setVisible(!this.cube.visible),
-      loop: true,
-    });
+    // Adiciona a professora no lugar do cubo vermelho
+    this.cube = this.add
+      .image(width * 0.58, height * 0.25, "prof")
+      .setScale(1.5);
 
     // Adiciona o ícone de exclamação acima do cubo
     this.exclamacao = this.add
