@@ -266,8 +266,38 @@ export default class SelecaoPersonagem extends Phaser.Scene {
       this.scene.start("MenuPrincipal");
     });
 
+    // Configurar controles de teclado
+    this.setupKeyboardControls();
+
     // Aplicar o estado inicial
     this.selectCharacter(0, true);
+  }
+
+  // Adicionar função para configurar os controles de teclado
+  setupKeyboardControls() {
+    // Criar referências para as teclas de seta e Enter
+    this.cursors = this.input.keyboard.createCursorKeys();
+
+    // Adicionar evento para teclas pressionadas
+    this.input.keyboard.on("keydown", (event) => {
+      // Para direita e cima: selecionar próximo personagem
+      if (event.code === "ArrowRight" || event.code === "ArrowUp") {
+        let nextIndex = (this.selectedIndex + 1) % this.personagens.length;
+        this.selectCharacter(nextIndex);
+      }
+      // Para esquerda e baixo: selecionar personagem anterior
+      else if (event.code === "ArrowLeft" || event.code === "ArrowDown") {
+        let prevIndex =
+          (this.selectedIndex - 1 + this.personagens.length) %
+          this.personagens.length;
+        this.selectCharacter(prevIndex);
+      }
+      // Para Enter: confirmar seleção
+      else if (event.code === "Enter") {
+        this.sound.play("selecao");
+        this.confirmSelection();
+      }
+    });
   }
 
   updateSelectorBorder() {
